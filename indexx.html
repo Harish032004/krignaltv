@@ -1,0 +1,10257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Krignal TV — Discover What Moves You Forward</title>
+
+    <!-- =========================================================
+         SHARED / GLOBAL CSS
+         Kept shared because these exact original classes are reused
+         by more than one section (pill, sectionHead, rail, card, etc.).
+    ========================================================== -->
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+:root {
+
+            --bg: #070807;
+
+            --panel: #101110;
+
+            --panel2: #151715;
+
+            --text: #f5f6f2;
+
+            --muted: #9fa39b;
+
+            --line: #252825;
+
+            --acid: #d7ff52;
+
+            --soft: #c6c9c0;
+
+            --radius: 22px
+
+        }
+
+* {
+
+            box-sizing: border-box
+
+        }
+
+html {
+
+            scroll-behavior: smooth
+
+        }
+
+body {
+
+            margin: 0;
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family: "DM Sans", sans-serif;
+
+            overflow-x: hidden
+
+        }
+
+button,
+
+        input {
+
+            font: inherit
+
+        }
+
+.grain {
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            opacity: .035;
+
+            z-index: 99;
+
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")
+
+        }
+
+.pill {
+
+            border: 1px solid #363936;
+
+            background: #111311;
+
+            color: white;
+
+            border-radius: 999px;
+
+            padding: 10px 16px;
+
+            cursor: pointer;
+
+            transition: .25s
+
+        }
+
+.pill:hover {
+
+            transform: translateY(-2px);
+
+            border-color: #6d7368
+
+        }
+
+.pill.acid {
+
+            background: var(--acid);
+
+            color: #0b0c09;
+
+            border-color: var(--acid);
+
+            font-weight: 700
+
+        }
+
+.eyebrow {
+
+            font-size: 12px;
+
+            letter-spacing: 2.2px;
+
+            text-transform: uppercase;
+
+            color: #c5c8be;
+
+            margin-bottom: 20px
+
+        }
+
+main {
+
+            position: relative;
+
+            z-index: 3
+
+        }
+
+.section {
+
+            padding: 90px 5vw
+
+        }
+
+.sectionHead {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: end;
+
+            margin-bottom: 30px
+
+        }
+
+.sectionHead h2 {
+
+            font: 650 clamp(30px, 4vw, 52px) Manrope;
+
+            margin: 0;
+
+            letter-spacing: -2px
+
+        }
+
+.sectionHead p {
+
+            color: var(--muted);
+
+            max-width: 430px;
+
+            margin: 0
+
+        }
+
+.rail {
+
+            display: grid;
+
+            grid-auto-flow: column;
+
+            grid-auto-columns: minmax(280px, 30vw);
+
+            overflow-x: auto;
+
+            gap: 18px;
+
+            padding: 5px 2px 24px;
+
+            scrollbar-width: none
+
+        }
+
+.card {
+
+            height: 360px;
+
+            border-radius: var(--radius);
+
+            position: relative;
+
+            overflow: hidden;
+
+            background: linear-gradient(145deg, #252925, #111);
+
+            border: 1px solid #242724;
+
+            cursor: pointer;
+
+            transition: .35s
+
+        }
+
+.card:hover {
+
+            transform: translateY(-8px) scale(1.015);
+
+            border-color: #4e534b
+
+        }
+
+.card::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background: radial-gradient(circle at 70% 25%, var(--glow, #6d7d4b), transparent 30%), linear-gradient(0deg, #070807f2 5%, transparent 65%)
+
+        }
+
+.cardContent {
+
+            position: absolute;
+
+            inset: auto 22px 22px;
+
+            z-index: 2
+
+        }
+
+.tag {
+
+            display: inline-flex;
+
+            border: 1px solid #ffffff2b;
+
+            border-radius: 999px;
+
+            padding: 7px 10px;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 12px;
+
+            backdrop-filter: blur(10px)
+
+        }
+
+.card h3 {
+
+            font: 650 25px/1.05 Manrope;
+
+            margin: 0 0 9px;
+
+            letter-spacing: -1px
+
+        }
+
+.card p {
+
+            font-size: 13px;
+
+            color: #b8bbb3;
+
+            margin: 0
+
+        }
+
+.progress {
+
+            height: 3px;
+
+            background: #444;
+
+            margin-top: 18px;
+
+            border-radius: 4px;
+
+            overflow: hidden
+
+        }
+
+.progress i {
+
+            display: block;
+
+            height: 100%;
+
+            width: 64%;
+
+            background: var(--acid)
+
+        }
+
+@media (max-width:900px) {
+.rail {
+
+                grid-auto-columns: 78vw
+
+            }
+
+.section {
+
+                padding: 70px 5vw
+
+            }
+
+.sectionHead {
+
+                align-items: start;
+
+                gap: 16px;
+
+                flex-direction: column
+
+            }
+}
+    </style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+
+<!-- =========================================================
+     01. NAVBAR
+     HTML
+========================================================= -->
+<nav>
+<div class="logo">KRIGNAL <b>TV</b></div>
+<div class="navlinks"><a class="active" href="#home">Home</a><a href="#discover">Discover</a><a href="#shows">Shows</a><a href="#people">People</a><a href="#matches">Matches</a><a href="#shorts">Shorts</a><a href="#trending">Trending</a><a href="#saved">Saved</a></div>
+<div class="navright"><button class="pill" onclick="openSearch()">⌕ Search</button><button class="pill acid" onclick="document.querySelector('#discover').scrollIntoView()">Discover</button></div>
+</nav>
+
+<!-- NAVBAR CSS -->
+<style>
+nav {
+
+            height: 76px;
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            z-index: 50;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 0 4vw;
+
+            background: linear-gradient(#070807e8, #07080788, transparent);
+
+            backdrop-filter: blur(10px)
+
+        }
+
+.logo {
+
+            font: 800 20px Manrope;
+
+            letter-spacing: -1px;
+
+            white-space: nowrap
+
+        }
+
+.logo b {
+
+            color: var(--acid)
+
+        }
+
+.navlinks {
+
+            display: flex;
+
+            gap: 26px;
+
+            margin-left: 48px
+
+        }
+
+.navlinks a {
+
+            color: #c7cac3;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            transition: .2s
+
+        }
+
+.navlinks a:hover,
+
+        .navlinks a.active {
+
+            color: white
+
+        }
+
+.navright {
+
+            margin-left: auto;
+
+            display: flex;
+
+            gap: 12px;
+
+            align-items: center
+
+        }
+
+@media (max-width:900px) {
+.navlinks {
+
+                display: none
+
+            }
+}
+
+@media (max-width:540px) {
+nav {
+
+                padding: 0 5vw
+
+            }
+
+.navright .pill:not(.acid) {
+
+                display: none
+
+            }
+}
+</style>
+
+<!-- NAVBAR JS -->
+<script>
+/* No section-specific JavaScript required. */
+</script>
+
+
+<!-- =========================================================
+     HERO SECTION
+========================================================= -->
+
+<header class="hero" id="home">
+
+    <!-- BACKGROUND ORB -->
+    <div class="orb"></div>
+
+
+    <!-- HERO CONTENT -->
+    <div class="heroContent">
+
+        <div class="eyebrow">
+            The discovery layer of Krignal
+        </div>
+
+
+        <!-- TYPING HEADING -->
+        <h1
+            id="heroTyping"
+            data-text="WHO & WHAT SHOULD YOU DISCOVER NEXT?"
+            aria-label="WHO & WHAT SHOULD YOU DISCOVER NEXT?"
+        ></h1>
+
+
+        <!-- DESCRIPTION -->
+        <div class="heroSub">
+
+            <p>
+                Stories introduce you. Signals guide you. Krignal connects you.
+                Discover people, ideas and opportunities that can move you forward.
+            </p>
+
+        </div>
+
+
+        <!-- SEARCH BAR -->
+        <div class="search">
+
+            <input
+                id="heroSearch"
+                type="text"
+                placeholder="Search people, industries, companies, conversations or opportunities…"
+                autocomplete="off"
+            />
+
+            <button
+                type="button"
+                onclick="searchHero()"
+            >
+                Start Discovery →
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCROLL INDICATOR -->
+    <div class="scroll">
+        SCROLL TO DISCOVER ↓
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO CSS
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   HERO MAIN
+========================================================= */
+
+.hero {
+
+    position: relative;
+
+    width: 100%;
+
+    /*
+       Keep complete hero inside viewport
+    */
+    height: 100svh;
+
+    min-height: 620px;
+
+    display: flex;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    padding:
+        95px
+        5vw
+        32px;
+
+    overflow: hidden;
+
+}
+
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        radial-gradient(
+            circle at 75% 35%,
+            #4b5530 0,
+            transparent 24%
+        ),
+
+        radial-gradient(
+            circle at 62% 48%,
+            #263227 0,
+            transparent 35%
+        ),
+
+        linear-gradient(
+            110deg,
+            #070807 35%,
+            #0d100c 100%
+        );
+
+    opacity: .9;
+
+    pointer-events: none;
+
+}
+
+
+
+/* =========================================================
+   ORB
+========================================================= */
+
+.orb {
+
+    position: absolute;
+
+    width:
+        clamp(
+            420px,
+            43vw,
+            680px
+        );
+
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    right: 3vw;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    background:
+
+        radial-gradient(
+            circle at 38% 34%,
+            #f1ffd0 0,
+            #bde237 4%,
+            #4d5f16 23%,
+            #171b0f 55%,
+            #090a08 70%
+        );
+
+    box-shadow:
+
+        0 0 160px #c9ff3430,
+
+        0 0 260px #9dcb1b12;
+
+    filter:
+        saturate(.8);
+
+    animation:
+        heroOrbFloat
+        7s
+        ease-in-out
+        infinite;
+
+    pointer-events: none;
+
+}
+
+
+
+/* =========================================================
+   ORB FLOAT ANIMATION
+========================================================= */
+
+@keyframes heroOrbFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(-50%)
+            scale(1);
+
+    }
+
+
+    50% {
+
+        transform:
+            translateY(calc(-50% - 16px))
+            scale(1.018);
+
+    }
+
+}
+
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.heroContent {
+
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(
+            1050px,
+            65vw
+        );
+
+}
+
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.hero .eyebrow {
+
+    font-size: 12px;
+
+    letter-spacing: 2.2px;
+
+    text-transform: uppercase;
+
+    color: #c5c8be;
+
+    margin-bottom:
+        clamp(
+            12px,
+            2vh,
+            20px
+        );
+
+}
+
+
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.hero h1 {
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-weight: 700;
+
+    font-size:
+        clamp(
+            58px,
+            7vw,
+            112px
+        );
+
+    line-height: .88;
+
+    margin: 0;
+
+    letter-spacing: -6px;
+
+    max-width: 1050px;
+
+    /*
+       Prevent layout jumping during typing/deleting
+    */
+    min-height: 1.82em;
+
+}
+
+
+
+/* =========================================================
+   GREEN DISCOVER TEXT
+========================================================= */
+
+.hero h1 .typing-acid {
+
+    color:
+        var(--acid);
+
+}
+
+
+
+/* =========================================================
+   TYPING CURSOR
+========================================================= */
+
+.hero h1::after {
+
+    content: "";
+
+    display: inline-block;
+
+    width: 4px;
+
+    height: .78em;
+
+    margin-left: 8px;
+
+    background:
+        var(--acid);
+
+    vertical-align:
+        baseline;
+
+    animation:
+        heroCursorBlink
+        .75s
+        steps(1)
+        infinite;
+
+}
+
+
+
+/* CURSOR BLINK */
+
+@keyframes heroCursorBlink {
+
+    0%,
+    45% {
+
+        opacity: 1;
+
+    }
+
+
+    46%,
+    100% {
+
+        opacity: 0;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.heroSub {
+
+    margin-top:
+        clamp(
+            14px,
+            2.7vh,
+            28px
+        );
+
+}
+
+
+.heroSub p {
+
+    max-width: 620px;
+
+    margin: 0;
+
+    color:
+        #b8bcb3;
+
+    font-size:
+        clamp(
+            15px,
+            1.25vw,
+            19px
+        );
+
+    line-height: 1.55;
+
+}
+
+
+
+/* =========================================================
+   SEARCH BAR
+========================================================= */
+
+.search {
+
+    width:
+        min(
+            740px,
+            100%
+        );
+
+    display: flex;
+
+    align-items: stretch;
+
+    background:
+        #f2f4ed;
+
+    color:
+        #111;
+
+    border-radius: 18px;
+
+    padding: 7px;
+
+    margin-top:
+        clamp(
+            16px,
+            2.8vh,
+            28px
+        );
+
+    box-shadow:
+        0 18px 70px #0008;
+
+}
+
+
+
+/* =========================================================
+   SEARCH INPUT
+========================================================= */
+
+.search input {
+
+    flex: 1;
+
+    min-width: 0;
+
+    border: 0;
+
+    outline: 0;
+
+    background:
+        transparent;
+
+    color:
+        #111;
+
+    padding:
+        14px
+        15px;
+
+    font-family:
+        inherit;
+
+    font-size:
+        14px;
+
+}
+
+
+.search input::placeholder {
+
+    color:
+        #777b73;
+
+}
+
+
+
+/* =========================================================
+   START DISCOVERY BUTTON
+========================================================= */
+
+.search button {
+
+    border: 0;
+
+    outline: none;
+
+    background:
+        #111;
+
+    color:
+        #fff;
+
+    border-radius: 12px;
+
+    padding:
+        0
+        22px;
+
+    font-family:
+        inherit;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+
+        transform .25s ease,
+
+        background .25s ease,
+
+        color .25s ease;
+
+}
+
+
+
+.search button:hover {
+
+    background:
+        var(--acid);
+
+    color:
+        #080a06;
+
+    transform:
+        translateX(2px);
+
+}
+
+
+
+/* =========================================================
+   SCROLL INDICATOR
+========================================================= */
+
+.scroll {
+
+    position: absolute;
+
+    right: 3vw;
+
+    bottom: 30px;
+
+    z-index: 2;
+
+    color:
+        #8c9188;
+
+    font-size: 10px;
+
+    writing-mode:
+        vertical-rl;
+
+    letter-spacing: 2px;
+
+}
+
+
+
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
+
+@media
+(max-width: 1300px) {
+
+    .hero {
+
+        padding-top:
+            90px;
+
+    }
+
+
+    .heroContent {
+
+        width:
+            63vw;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                56px,
+                6.7vw,
+                94px
+            );
+
+        letter-spacing:
+            -5px;
+
+    }
+
+
+    .orb {
+
+        right:
+            -2vw;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   SHORT DESKTOP / LAPTOP HEIGHT
+   1366×768 etc.
+========================================================= */
+
+@media
+(min-width: 901px)
+and (max-height: 820px) {
+
+    .hero {
+
+        padding-top:
+            86px;
+
+        padding-bottom:
+            22px;
+
+    }
+
+
+    .hero .eyebrow {
+
+        margin-bottom:
+            10px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                52px,
+                6vw,
+                86px
+            );
+
+        min-height:
+            1.82em;
+
+    }
+
+
+    .heroSub {
+
+        margin-top:
+            14px;
+
+    }
+
+
+    .heroSub p {
+
+        font-size:
+            16px;
+
+        line-height:
+            1.45;
+
+    }
+
+
+    .search {
+
+        margin-top:
+            16px;
+
+    }
+
+
+    .search input {
+
+        padding:
+            12px
+            14px;
+
+    }
+
+
+    .orb {
+
+        width:
+            min(
+                43vw,
+                550px
+            );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   VERY SHORT DESKTOP HEIGHT
+========================================================= */
+
+@media
+(min-width: 901px)
+and (max-height: 680px) {
+
+    .hero {
+
+        min-height:
+            560px;
+
+        padding-top:
+            75px;
+
+        padding-bottom:
+            15px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                48px,
+                5.6vw,
+                74px
+            );
+
+    }
+
+
+    .heroSub p {
+
+        font-size:
+            14px;
+
+    }
+
+
+    .search {
+
+        margin-top:
+            12px;
+
+    }
+
+
+    .search input {
+
+        padding:
+            10px
+            13px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(max-width: 900px) {
+
+    .hero {
+
+        /*
+           Tablets may need natural content height,
+           but normally remains around one screen.
+        */
+
+        height:
+            auto;
+
+        min-height:
+            100svh;
+
+        padding:
+
+            105px
+
+            5vw
+
+            45px;
+
+        align-items:
+            center;
+
+    }
+
+
+    .heroContent {
+
+        width:
+            82%;
+
+    }
+
+
+    .orb {
+
+        width:
+            430px;
+
+        right:
+            -180px;
+
+        top:
+            43%;
+
+        opacity:
+            .76;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                50px,
+                9vw,
+                78px
+            );
+
+        line-height:
+            .9;
+
+        letter-spacing:
+            -3.5px;
+
+        min-height:
+            2.7em;
+
+    }
+
+
+    .heroSub p {
+
+        max-width:
+            540px;
+
+    }
+
+
+    .scroll {
+
+        display:
+            none;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media
+(max-width: 540px) {
+
+    .hero {
+
+        min-height:
+            100svh;
+
+        padding:
+
+            82px
+
+            5vw
+
+            25px;
+
+        align-items:
+            center;
+
+    }
+
+
+    .heroContent {
+
+        width:
+            100%;
+
+    }
+
+
+    .orb {
+
+        width:
+            330px;
+
+        right:
+            -190px;
+
+        top:
+            34%;
+
+        opacity:
+            .64;
+
+    }
+
+
+    .hero .eyebrow {
+
+        font-size:
+            10px;
+
+        letter-spacing:
+            1.7px;
+
+        margin-bottom:
+            14px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                42px,
+                12.8vw,
+                58px
+            );
+
+        line-height:
+            .92;
+
+        letter-spacing:
+            -2.5px;
+
+        min-height:
+            3.72em;
+
+    }
+
+
+    .hero h1::after {
+
+        width:
+            3px;
+
+        margin-left:
+            5px;
+
+    }
+
+
+    .heroSub {
+
+        margin-top:
+            14px;
+
+    }
+
+
+    .heroSub p {
+
+        max-width:
+            94%;
+
+        font-size:
+            14px;
+
+        line-height:
+            1.5;
+
+    }
+
+
+    .search {
+
+        margin-top:
+            17px;
+
+        padding:
+            5px;
+
+        border-radius:
+            13px;
+
+    }
+
+
+    .search input {
+
+        padding:
+            11px
+            9px;
+
+        font-size:
+            12px;
+
+    }
+
+
+    .search button {
+
+        padding:
+            0
+            11px;
+
+        font-size:
+            10.5px;
+
+        border-radius:
+            9px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media
+(max-width: 390px) {
+
+    .hero {
+
+        padding-top:
+            76px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                38px,
+                12.5vw,
+                49px
+            );
+
+    }
+
+
+    .heroSub p {
+
+        font-size:
+            13px;
+
+    }
+
+
+    .search {
+
+        align-items:
+            stretch;
+
+    }
+
+
+    .search input {
+
+        font-size:
+            11px;
+
+    }
+
+
+    .search button {
+
+        padding:
+            0
+            8px;
+
+        font-size:
+            9.5px;
+
+    }
+
+}
+
+</style>
+
+
+
+<!-- =========================================================
+     HERO JS
+========================================================= -->
+
+<script>
+
+/* =========================================================
+   SEARCH HERO
+========================================================= */
+
+function searchHero() {
+
+    const heroSearch =
+        document.getElementById('heroSearch');
+
+
+    const modalInput =
+        document.getElementById('modalInput');
+
+
+    /*
+       Existing modal function from your main code
+    */
+
+    if (
+        typeof openSearch === 'function'
+    ) {
+
+        openSearch();
+
+    }
+
+
+    /*
+       Pass hero search text into modal
+    */
+
+    if (
+        modalInput &&
+        heroSearch
+    ) {
+
+        modalInput.value =
+            heroSearch.value;
+
+    }
+
+
+    /*
+       Run existing result filter
+    */
+
+    if (
+        typeof filterResults === 'function' &&
+        heroSearch
+    ) {
+
+        filterResults(
+            heroSearch.value
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ENTER KEY SEARCH
+========================================================= */
+
+const heroSearchInput =
+    document.getElementById(
+        'heroSearch'
+    );
+
+
+if (
+    heroSearchInput
+) {
+
+    heroSearchInput
+        .addEventListener(
+            'keydown',
+            function (event) {
+
+                if (
+                    event.key === 'Enter'
+                ) {
+
+                    event.preventDefault();
+
+                    searchHero();
+
+                }
+
+            }
+        );
+
+}
+
+
+
+/* =========================================================
+   REPEATING TYPING ANIMATION
+========================================================= */
+
+(function () {
+
+    const heading =
+        document.getElementById(
+            'heroTyping'
+        );
+
+
+    if (!heading) {
+
+        return;
+
+    }
+
+
+    const fullText =
+        heading.getAttribute(
+            'data-text'
+        );
+
+
+    let currentLength = 0;
+
+    let deleting = false;
+
+
+
+    /* =========================
+       SPEED SETTINGS
+    ========================= */
+
+    const typingSpeed =
+        63;
+
+
+    const deletingSpeed =
+        30;
+
+
+    const completedPause =
+        1800;
+
+
+    const restartPause =
+        450;
+
+
+
+    /* =========================================================
+       RENDER TEXT
+    ========================================================= */
+
+    function renderText(
+        visibleText
+    ) {
+
+        /*
+           Make DISCOVER green only
+           when its characters exist.
+        */
+
+        const formattedText =
+            visibleText.replace(
+                /DISCOVER/g,
+                '<span class="typing-acid">DISCOVER</span>'
+            );
+
+
+        heading.innerHTML =
+            formattedText;
+
+    }
+
+
+
+    /* =========================================================
+       MAIN LOOP
+    ========================================================= */
+
+    function typingLoop() {
+
+
+        /* =============================================
+           TYPE FORWARD
+        ============================================= */
+
+        if (!deleting) {
+
+
+            currentLength++;
+
+
+            renderText(
+
+                fullText.substring(
+                    0,
+                    currentLength
+                )
+
+            );
+
+
+            /*
+               Finished full sentence
+            */
+
+            if (
+                currentLength >=
+                fullText.length
+            ) {
+
+                deleting = true;
+
+
+                setTimeout(
+
+                    typingLoop,
+
+                    completedPause
+
+                );
+
+
+                return;
+
+            }
+
+
+            /*
+               Continue typing
+            */
+
+            setTimeout(
+
+                typingLoop,
+
+                typingSpeed
+
+            );
+
+        }
+
+
+
+        /* =============================================
+           DELETE BACKWARD
+        ============================================= */
+
+        else {
+
+
+            currentLength--;
+
+
+            renderText(
+
+                fullText.substring(
+                    0,
+                    currentLength
+                )
+
+            );
+
+
+            /*
+               Completely deleted
+            */
+
+            if (
+                currentLength <= 0
+            ) {
+
+
+                deleting = false;
+
+
+                setTimeout(
+
+                    typingLoop,
+
+                    restartPause
+
+                );
+
+
+                return;
+
+            }
+
+
+            /*
+               Continue deleting
+            */
+
+            setTimeout(
+
+                typingLoop,
+
+                deletingSpeed
+
+            );
+
+        }
+
+    }
+
+
+
+    /* =========================================================
+       START TYPING
+    ========================================================= */
+
+    setTimeout(
+
+        typingLoop,
+
+        450
+
+    );
+
+})();
+
+</script>
+
+
+<main>
+
+<!-- =========================================================
+     03. DISCOVER
+     HTML
+========================================================= -->
+
+<section class="section discover-section" id="discover">
+
+    <!-- =========================
+         SECTION HEADING
+    ========================== -->
+
+    <div class="discoverHead">
+
+        <div class="eyebrow">
+            Curated for you
+        </div>
+
+        <h2>
+            Your professional <span>discovery feed.</span>
+        </h2>
+
+        <p class="discoverSubtitle">
+            Not another content feed. Every story is a doorway to a person,
+            idea, company or relationship worth knowing.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         CARDS
+    ========================== -->
+
+    <div class="discoverRail">
+
+
+        <!-- =====================================================
+             CARD 01
+             CLICKABLE → YOUTUBE
+        ====================================================== -->
+
+        <a
+            href="https://www.youtube.com/watch?v=osIaq96sY48"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="discoverCardLink reveal-left"
+        >
+
+            <article
+                class="discoverCard"
+                style="--glow:#7c8858"
+            >
+
+                <div class="discoverImage">
+
+                    <img
+                        src="https://img.youtube.com/vi/osIaq96sY48/hqdefault.jpg"
+                        alt="Beyond the Royal Title: Nawabzada Asif Ali"
+                    >
+
+                    <div class="imageShade"></div>
+
+                </div>
+
+
+                <div class="discoverCardContent">
+
+                    <span class="discoverTag">
+                        Krignal TV
+                    </span>
+
+                    <h3>
+                        Building beyond the title
+                    </h3>
+
+                    <p>
+                        Nawabzada Asif Ali like you have never
+                        heard him before.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </a>
+
+
+
+        <!-- =====================================================
+             CARD 02
+             CLICKABLE → YOUTUBE
+        ====================================================== -->
+
+        <a
+            href="https://www.youtube.com/watch?v=tasbPpvN-nI"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="discoverCardLink reveal-right"
+        >
+
+            <article
+                class="discoverCard"
+                style="--glow:#485b70"
+            >
+
+                <div class="discoverImage">
+
+                    <img
+                        src="https://img.youtube.com/vi/tasbPpvN-nI/hqdefault.jpg"
+                        alt="From 180 to 58,000+ Students: The Incredible VIT Story"
+                    >
+
+                    <div class="imageShade"></div>
+
+                </div>
+
+
+                <div class="discoverCardContent">
+
+                    <span class="discoverTag">
+                        Krignal TV
+                    </span>
+
+                    <h3>
+                        Daily Match Show
+                    </h3>
+
+                    <p>
+                        Dr. Sekar Viswanathan on building VIT
+                        from 180 to 58,000+ students.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </a>
+
+
+
+        <!-- =====================================================
+             CARD 03
+        ====================================================== -->
+
+        <div class="discoverCardLink reveal-left">
+
+            <article
+                class="discoverCard"
+                style="--glow:#7e6347"
+            >
+
+                <div class="discoverImage">
+
+                    <img
+                        src="https://randomuser.me/api/portraits/men/75.jpg"
+                        alt="Meet Krignal Members"
+                        style="object-fit:contain; object-position:center center; background:#181a17"
+                    >
+
+                    <div class="imageShade"></div>
+
+                </div>
+
+
+                <div class="discoverCardContent">
+
+                    <span class="discoverTag">
+                        KrigNal Signals
+                    </span>
+
+                    <h3>
+                        Meet Krignal Members
+                    </h3>
+
+                    <p>
+                        Discover professionals, leaders and creators
+                        shaping ideas across industries.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             CARD 04
+        ====================================================== -->
+
+        <div class="discoverCardLink reveal-right">
+
+            <article
+                class="discoverCard"
+                style="--glow:#6f536f"
+            >
+
+                <div class="discoverImage">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&h=900&q=80"
+                        alt="Meet Krignal Startups"
+                    >
+
+                    <div class="imageShade"></div>
+
+                </div>
+
+
+                <div class="discoverCardContent">
+
+                    <span class="discoverTag">
+                        Beyond The Resume
+                    </span>
+
+                    <h3>
+                        Meet Krignal Startups
+                    </h3>
+
+                    <p>
+                        Explore ambitious startups, emerging businesses
+                        and the people building what comes next.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     DISCOVER CSS
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.discover-section {
+
+    position: relative;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding:
+        48px
+        5vw
+        42px;
+
+    overflow: hidden;
+
+}
+
+
+
+/* BACKGROUND GLOW */
+
+.discover-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    left: -300px;
+    top: -130px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(215,255,82,.06),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+}
+
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.discoverHead {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-bottom:
+        22px;
+
+}
+
+
+.discoverHead .eyebrow {
+
+    margin-bottom:
+        8px;
+
+}
+
+
+
+/* =========================================================
+   MAIN TITLE
+========================================================= */
+
+.discoverHead h2 {
+
+    margin: 0;
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size:
+        clamp(
+            32px,
+            3.7vw,
+            52px
+        );
+
+    font-weight: 650;
+
+    line-height: 1;
+
+    letter-spacing:
+        -2.5px;
+
+    color:
+        #f5f6f2;
+
+    white-space:
+        nowrap;
+
+}
+
+
+
+/* GREEN DISCOVERY FEED */
+
+.discoverHead h2 span {
+
+    color:
+        var(--acid);
+
+}
+
+
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.discoverSubtitle {
+
+    max-width:
+        800px;
+
+    margin:
+        13px
+        0
+        0;
+
+    color:
+        #b0b4ab;
+
+    font-size:
+        16px;
+
+    line-height:
+        1.6;
+
+    font-weight:
+        400;
+
+}
+
+
+
+/* =========================================================
+   CARD GRID
+========================================================= */
+
+.discoverRail {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        14px;
+
+    align-items:
+        stretch;
+
+}
+
+
+
+/* =========================================================
+   CARD WRAPPER
+========================================================= */
+
+.discoverCardLink {
+
+    display: block;
+
+    height: 100%;
+
+    color: inherit;
+
+    text-decoration: none;
+
+    border-radius:
+        20px;
+
+    opacity: 0;
+
+    will-change:
+        transform,
+        opacity;
+
+}
+
+
+
+/* LEFT REVEAL */
+
+.discoverCardLink.reveal-left {
+
+    transform:
+        translateX(-70px)
+        translateY(14px)
+        scale(.96);
+
+}
+
+
+
+/* RIGHT REVEAL */
+
+.discoverCardLink.reveal-right {
+
+    transform:
+        translateX(70px)
+        translateY(14px)
+        scale(.96);
+
+}
+
+
+
+/* VISIBLE STATE */
+
+.discoverCardLink.is-visible {
+
+    opacity: 1;
+
+    transform:
+        translateX(0)
+        translateY(0)
+        scale(1);
+
+    transition:
+
+        opacity .7s ease,
+
+        transform
+        .85s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+
+/* STAGGER */
+
+.discoverCardLink:nth-child(1) {
+    transition-delay: .03s;
+}
+
+.discoverCardLink:nth-child(2) {
+    transition-delay: .11s;
+}
+
+.discoverCardLink:nth-child(3) {
+    transition-delay: .19s;
+}
+
+.discoverCardLink:nth-child(4) {
+    transition-delay: .27s;
+}
+
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.discoverCard {
+
+    position: relative;
+
+    width: 100%;
+
+    /* SAME HEIGHT FOR ALL CARDS */
+
+    height: 330px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border-radius:
+        20px;
+
+    background:
+        #111311;
+
+    border:
+        1px solid
+        #252825;
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,0,0,.18);
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+
+        border-color .3s ease,
+
+        box-shadow .3s ease;
+
+}
+
+
+
+/* CARD GLOW */
+
+.discoverCard::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 75% 15%,
+            var(--glow),
+            transparent 42%
+        );
+
+    opacity:
+        .1;
+
+    transition:
+        opacity .3s ease;
+
+}
+
+
+
+/* HOVER */
+
+.discoverCardLink:hover
+.discoverCard {
+
+    border-color:
+        rgba(215,255,82,.3);
+
+    box-shadow:
+        0 22px 55px
+        rgba(0,0,0,.32);
+
+}
+
+
+.discoverCardLink:hover
+.discoverCard::after {
+
+    opacity:
+        .18;
+
+}
+
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.discoverImage {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 155px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    background:
+        #181a17;
+
+}
+
+
+
+/* IMAGE */
+
+.discoverImage img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transform:
+        scale(1.01);
+
+    filter:
+        saturate(.85)
+        contrast(1.03);
+
+    transition:
+
+        transform
+        .65s
+        cubic-bezier(.16,1,.3,1),
+
+        filter .4s ease;
+
+}
+
+
+
+/* IMAGE HOVER */
+
+.discoverCardLink:hover
+.discoverImage img {
+
+    transform:
+        scale(1.07);
+
+    filter:
+        saturate(1)
+        contrast(1.05);
+
+}
+
+
+
+/* IMAGE SHADE */
+
+.imageShade {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 40%,
+            rgba(7,8,7,.7) 100%
+        );
+
+}
+
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.discoverCardContent {
+
+    position: relative;
+
+    z-index: 3;
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding:
+        15px
+        17px
+        17px;
+
+}
+
+
+
+/* =========================================================
+   TAG
+========================================================= */
+
+.discoverTag {
+
+    align-self:
+        flex-start;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    padding:
+        5px
+        8px;
+
+    margin-bottom:
+        9px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    border-radius:
+        999px;
+
+    color:
+        #cfd2ca;
+
+    font-size:
+        8px;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        .8px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.discoverCard h3 {
+
+    margin:
+        0
+        0
+        7px;
+
+    color:
+        #f5f6f2;
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size:
+        clamp(
+            16px,
+            1.08vw,
+            19px
+        );
+
+    font-weight:
+        650;
+
+    line-height:
+        1.12;
+
+    letter-spacing:
+        0;
+
+}
+
+
+
+/* =========================================================
+   CARD DESCRIPTION
+========================================================= */
+
+.discoverCard p {
+
+    margin: 0;
+
+    color:
+        #a8aca4;
+
+    font-size:
+        11.5px;
+
+    line-height:
+        1.5;
+
+}
+
+
+
+/* =========================================================
+   SHORT HEIGHT DESKTOP
+========================================================= */
+
+@media
+(min-width: 1001px)
+and (max-height: 800px) {
+
+    .discover-section {
+
+        padding-top:
+            36px;
+
+        padding-bottom:
+            32px;
+
+    }
+
+
+    .discoverHead {
+
+        margin-bottom:
+            17px;
+
+    }
+
+
+    .discoverHead h2 {
+
+        font-size:
+            clamp(
+                30px,
+                3.3vw,
+                44px
+            );
+
+    }
+
+
+    .discoverSubtitle {
+
+        margin-top:
+            8px;
+
+        font-size:
+            15px;
+
+    }
+
+
+    .discoverCard {
+
+        height:
+            295px;
+
+    }
+
+
+    .discoverImage {
+
+        height:
+            130px;
+
+    }
+
+
+    .discoverCardContent {
+
+        padding:
+            13px
+            14px
+            14px;
+
+    }
+
+
+    .discoverTag {
+
+        margin-bottom:
+            6px;
+
+    }
+
+
+    .discoverCard h3 {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .discoverCard p {
+
+        font-size:
+            10.8px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media
+(max-width: 1200px) {
+
+    .discoverRail {
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
+    }
+
+
+    .discoverCard {
+
+        height:
+            330px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(max-width: 900px) {
+
+    .discover-section {
+
+        padding:
+            50px
+            5vw;
+
+    }
+
+
+    .discoverHead h2 {
+
+        font-size:
+            clamp(
+                33px,
+                6vw,
+                48px
+            );
+
+        white-space:
+            normal;
+
+    }
+
+
+    .discoverSubtitle {
+
+        font-size:
+            15px;
+
+        max-width:
+            680px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media
+(max-width: 600px) {
+
+    .discover-section {
+
+        padding:
+            45px
+            5vw;
+
+    }
+
+
+    .discoverHead {
+
+        margin-bottom:
+            20px;
+
+    }
+
+
+    .discoverHead h2 {
+
+        font-size:
+            clamp(
+                30px,
+                9vw,
+                40px
+            );
+
+        line-height:
+            1.03;
+
+        letter-spacing:
+            -2px;
+
+        white-space:
+            normal;
+
+    }
+
+
+    .discoverSubtitle {
+
+        margin-top:
+            10px;
+
+        max-width:
+            96%;
+
+        font-size:
+            14px;
+
+        line-height:
+            1.6;
+
+    }
+
+
+
+    /* MOBILE HORIZONTAL SCROLL */
+
+    .discoverRail {
+
+        display: grid;
+
+        grid-auto-flow:
+            column;
+
+        grid-auto-columns:
+            82vw;
+
+        grid-template-columns:
+            none;
+
+        gap:
+            12px;
+
+        overflow-x:
+            auto;
+
+        overflow-y:
+            hidden;
+
+        padding-bottom:
+            12px;
+
+        scroll-snap-type:
+            x mandatory;
+
+        scrollbar-width:
+            none;
+
+        -webkit-overflow-scrolling:
+            touch;
+
+    }
+
+
+    .discoverRail::-webkit-scrollbar {
+
+        display:
+            none;
+
+    }
+
+
+    .discoverCardLink {
+
+        scroll-snap-align:
+            start;
+
+    }
+
+
+    .discoverCard {
+
+        height:
+            325px;
+
+    }
+
+
+    .discoverImage {
+
+        height:
+            150px;
+
+    }
+
+
+    .discoverCardContent {
+
+        padding:
+            14px;
+
+    }
+
+
+    .discoverCard h3 {
+
+        font-size:
+            20px;
+
+    }
+
+
+    .discoverCard p {
+
+        font-size:
+            11.5px;
+
+    }
+
+
+    .discoverCardLink.reveal-left {
+
+        transform:
+            translateX(-30px)
+            translateY(8px)
+            scale(.97);
+
+    }
+
+
+    .discoverCardLink.reveal-right {
+
+        transform:
+            translateX(30px)
+            translateY(8px)
+            scale(.97);
+
+    }
+
+
+    .discoverCardLink.is-visible {
+
+        transform:
+            translateX(0)
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media
+(prefers-reduced-motion: reduce) {
+
+    .discoverCardLink {
+
+        opacity: 1 !important;
+
+        transform:
+            none !important;
+
+        transition:
+            none !important;
+
+    }
+
+
+    .discoverCard {
+
+        transform:
+            none !important;
+
+    }
+
+}
+
+</style>
+
+
+
+<!-- =========================================================
+     DISCOVER JS
+========================================================= -->
+
+<script>
+
+(function () {
+
+    const discoverSection =
+        document.querySelector(
+            '#discover'
+        );
+
+
+    if (!discoverSection) {
+        return;
+    }
+
+
+    const cards =
+        discoverSection
+        .querySelectorAll(
+            '.discoverCardLink'
+        );
+
+
+
+    /* =====================================================
+       SCROLL REVEAL
+    ====================================================== */
+
+    const revealObserver =
+        new IntersectionObserver(
+
+            function (entries) {
+
+                entries.forEach(
+                    function (entry) {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target
+                                .classList
+                                .add(
+                                    'is-visible'
+                                );
+
+
+                            revealObserver
+                                .unobserve(
+                                    entry.target
+                                );
+
+                        }
+
+                    }
+                );
+
+            },
+
+            {
+
+                threshold:
+                    0.16,
+
+                rootMargin:
+                    '0px 0px -30px 0px'
+
+            }
+
+        );
+
+
+
+    cards.forEach(
+        function (card) {
+
+            revealObserver
+                .observe(
+                    card
+                );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       DESKTOP TILT
+    ====================================================== */
+
+    const canHover =
+        window.matchMedia(
+            '(hover:hover) and (pointer:fine)'
+        ).matches;
+
+
+    if (!canHover) {
+        return;
+    }
+
+
+    cards.forEach(
+        function (wrapper) {
+
+
+            const card =
+                wrapper.querySelector(
+                    '.discoverCard'
+                );
+
+
+            if (!card) {
+                return;
+            }
+
+
+
+            wrapper.addEventListener(
+                'mousemove',
+                function (event) {
+
+
+                    const rect =
+                        card
+                        .getBoundingClientRect();
+
+
+                    const x =
+                        (
+                            event.clientX -
+                            rect.left
+                        ) /
+                        rect.width -
+                        .5;
+
+
+                    const y =
+                        (
+                            event.clientY -
+                            rect.top
+                        ) /
+                        rect.height -
+                        .5;
+
+
+                    card.style.transform =
+                        `
+                        perspective(1000px)
+                        rotateY(${x * 3.5}deg)
+                        rotateX(${-y * 3.5}deg)
+                        translateY(-4px)
+                        `;
+
+                }
+            );
+
+
+
+            wrapper.addEventListener(
+                'mouseleave',
+                function () {
+
+                    card.style.transform =
+                        '';
+
+                }
+            );
+
+
+        }
+    );
+
+
+})();
+
+</script>
+
+
+<!-- =========================================================
+     04. DAILY MATCHES
+     HTML
+========================================================= -->
+
+<section class="matches" id="matches">
+
+    <!-- =========================
+         SECTION HEADER
+    ========================== -->
+
+    <div class="sectionHead matchesHead">
+
+        <div>
+
+            <div class="eyebrow matchesEyebrow">
+                Daily Matches / 30.09.26
+            </div>
+
+            <h2>
+                Some introductions change everything.
+            </h2>
+
+        </div>
+
+
+        <p>
+            Two people. One reason they should know each other.
+            Curated through signals, context and human judgement.
+        </p>
+
+    </div>
+
+
+
+    <!-- =========================
+         MATCH WRAPPER
+    ========================== -->
+
+    <div class="matchWrap">
+
+
+        <!-- =====================================================
+             PERSON 01
+        ====================================================== -->
+
+        <article class="person">
+
+            <div class="personImage">
+
+                <img
+                    src="https://picsum.photos/seed/aarav-menon/800/900"
+                    alt="Aarav Menon"
+                >
+
+                <!-- DECORATIVE GREEN ORB -->
+                <div class="personOrb"></div>
+
+                <div class="personImageShade"></div>
+
+            </div>
+
+
+            <div class="personContent">
+
+                <small>
+                    BUILDING
+                </small>
+
+                <h3>
+                    Aarav Menon
+                </h3>
+
+                <p>
+                    Founder · Consumer wellness brand
+                    <br>
+                    Looking for retail distribution across South India.
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             CONNECTOR
+        ====================================================== -->
+
+        <div class="connector">
+
+            <div class="line"></div>
+
+            <p>
+                94% signal alignment
+                <br>
+
+                <b>
+                    Why this match makes sense
+                </b>
+            </p>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             PERSON 02
+        ====================================================== -->
+
+        <article class="person">
+
+            <div class="personImage">
+
+                <img
+                    src="https://picsum.photos/seed/maya-krishnan/800/900"
+                    alt="Maya Krishnan"
+                >
+
+                <!-- DECORATIVE GREEN ORB -->
+                <div class="personOrb"></div>
+
+                <div class="personImageShade"></div>
+
+            </div>
+
+
+            <div class="personContent">
+
+                <small>
+                    CAN HELP WITH
+                </small>
+
+                <h3>
+                    Maya Krishnan
+                </h3>
+
+                <p>
+                    Retail Growth Leader · Chennai
+                    <br>
+                    Built distribution networks across 800+ stores.
+                </p>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     DAILY MATCHES CSS
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.matches {
+
+    position: relative;
+
+    background:
+        #eef0e8;
+
+    color:
+        #10110f;
+
+    border-radius:
+        38px;
+
+    margin:
+        0 2vw;
+
+    min-height:
+        90svh;
+
+    box-sizing:
+        border-box;
+
+    padding:
+        48px
+        3vw
+        42px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+    overflow:
+        hidden;
+
+}
+
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.matchesHead {
+
+    margin-bottom:
+        24px;
+
+}
+
+
+.matchesEyebrow {
+
+    color:
+        #6c7169;
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.matches .sectionHead h2 {
+
+    margin: 0;
+
+    max-width:
+        900px;
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size:
+        clamp(
+            38px,
+            3.7vw,
+            56px
+        );
+
+    font-weight:
+        650;
+
+    line-height:
+        .98;
+
+    letter-spacing:
+        -2.8px;
+
+}
+
+
+.matches .sectionHead p {
+
+    max-width:
+        520px;
+
+    margin: 0;
+
+    color:
+        #62675f;
+
+    font-size:
+        15px;
+
+    line-height:
+        1.6;
+
+}
+
+
+
+/* =========================================================
+   MATCH WRAPPER
+========================================================= */
+
+.matchWrap {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        185px
+        minmax(0, 1fr);
+
+    align-items:
+        center;
+
+    gap:
+        24px;
+
+}
+
+
+
+/* =========================================================
+   PERSON CARD
+========================================================= */
+
+.person {
+
+    position:
+        relative;
+
+    height:
+        400px;
+
+    min-height:
+        0;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        28px;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 18px 55px
+        rgba(40,45,35,.08);
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+
+}
+
+
+/* CARD HOVER */
+
+.person:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 24px 65px
+        rgba(40,45,35,.12);
+
+}
+
+
+
+/* =========================================================
+   PERSON IMAGE
+========================================================= */
+
+.personImage {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        265px;
+
+    flex-shrink:
+        0;
+
+    overflow:
+        hidden;
+
+    background:
+        #dfe3da;
+
+}
+
+
+
+/* ACTUAL IMAGE */
+
+.personImage img {
+
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        block;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+    transition:
+        transform
+        .7s
+        cubic-bezier(.16,1,.3,1);
+
+}
+
+
+
+/* IMAGE HOVER */
+
+.person:hover
+.personImage img {
+
+    transform:
+        scale(1.035);
+
+}
+
+
+
+/* =========================================================
+   GREEN ORB
+========================================================= */
+
+.personOrb {
+
+    position:
+        absolute;
+
+    z-index:
+        3;
+
+    width:
+        220px;
+
+    height:
+        220px;
+
+    border-radius:
+        50%;
+
+    /*
+       Mostly outside the image.
+       Only a premium partial orb is visible.
+    */
+
+    right:
+        -92px;
+
+    top:
+        -78px;
+
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+
+            #f4ffd0 0%,
+
+            #d7ff52 5%,
+
+            #a4c53c 17%,
+
+            #66792a 31%,
+
+            #3d491f 45%,
+
+            #252d1a 58%,
+
+            #171817 70%,
+
+            #10120f 100%
+        );
+
+    box-shadow:
+
+        0 0 50px
+        rgba(215,255,82,.13),
+
+        0 0 100px
+        rgba(215,255,82,.08);
+
+    opacity:
+        .96;
+
+    pointer-events:
+        none;
+
+    animation:
+        matchOrbFloat
+        6s
+        ease-in-out
+        infinite;
+
+}
+
+
+
+/* KEEP BOTH ORBS SAME CORNER */
+
+.person:nth-child(3)
+.personOrb {
+
+    left:
+        auto;
+
+    right:
+        -92px;
+
+    top:
+        -78px;
+
+}
+
+
+
+/* ORB FLOAT */
+
+@keyframes matchOrbFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+
+    50% {
+
+        transform:
+            translateY(-7px);
+
+    }
+
+}
+
+
+
+/* =========================================================
+   IMAGE SHADE
+========================================================= */
+
+.personImageShade {
+
+    position:
+        absolute;
+
+    z-index:
+        2;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            transparent 60%,
+            rgba(10,12,9,.08) 100%
+        );
+
+}
+
+
+
+/* =========================================================
+   WHITE CONTENT AREA
+========================================================= */
+
+.personContent {
+
+    position:
+        relative;
+
+    z-index:
+        4;
+
+    flex:
+        1;
+
+    padding:
+        17px
+        25px
+        18px;
+
+    background:
+        #ffffff;
+
+}
+
+
+
+/* LABEL */
+
+.person small {
+
+    display:
+        block;
+
+    color:
+        #70766c;
+
+    font-size:
+        10px;
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        1.5px;
+
+}
+
+
+
+/* NAME */
+
+.person h3 {
+
+    margin:
+        6px
+        0
+        5px;
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size:
+        27px;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.05;
+
+    letter-spacing:
+        -1px;
+
+}
+
+
+
+/* DESCRIPTION */
+
+.person p {
+
+    max-width:
+        430px;
+
+    margin:
+        0;
+
+    color:
+        #656a62;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.45;
+
+}
+
+
+
+/* =========================================================
+   CONNECTOR
+========================================================= */
+
+.connector {
+
+    text-align:
+        center;
+
+}
+
+
+
+/* CONNECTOR LINE */
+
+.connector .line {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        1px;
+
+    background:
+        #8e9489;
+
+}
+
+
+
+/* CENTER CIRCLE */
+
+.connector .line::after {
+
+    content:
+        "×";
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width:
+        50px;
+
+    height:
+        50px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        #10110f;
+
+    color:
+        var(--acid);
+
+    font-size:
+        20px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.08);
+
+}
+
+
+
+/* CONNECTOR TEXT */
+
+.connector p {
+
+    margin-top:
+        28px;
+
+    color:
+        #777d73;
+
+    font-size:
+        10px;
+
+    font-weight:
+        500;
+
+    line-height:
+        1.45;
+
+    letter-spacing:
+        1.5px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.connector p b {
+
+    color:
+        #5f645b;
+
+}
+
+
+
+/* =========================================================
+   NORMAL LAPTOP HEIGHT
+========================================================= */
+
+@media
+(min-width: 901px)
+and (max-height: 850px) {
+
+    .matches {
+
+        min-height:
+            88svh;
+
+        padding:
+            38px
+            3vw
+            34px;
+
+    }
+
+
+    .matchesHead {
+
+        margin-bottom:
+            19px;
+
+    }
+
+
+    .matches .sectionHead h2 {
+
+        font-size:
+            clamp(
+                35px,
+                3.35vw,
+                48px
+            );
+
+    }
+
+
+    .matches .sectionHead p {
+
+        font-size:
+            13px;
+
+    }
+
+
+    .person {
+
+        height:
+            355px;
+
+    }
+
+
+    .personImage {
+
+        height:
+            235px;
+
+    }
+
+
+    .personContent {
+
+        padding:
+            14px
+            22px
+            16px;
+
+    }
+
+
+    .personOrb {
+
+        width:
+            195px;
+
+        height:
+            195px;
+
+        right:
+            -82px;
+
+        top:
+            -70px;
+
+    }
+
+
+    .person:nth-child(3)
+    .personOrb {
+
+        right:
+            -82px;
+
+        top:
+            -70px;
+
+    }
+
+
+    .person h3 {
+
+        font-size:
+            25px;
+
+    }
+
+
+    .person p {
+
+        font-size:
+            12px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   SHORT LAPTOP
+========================================================= */
+
+@media
+(min-width: 901px)
+and (max-height: 700px) {
+
+    .matches {
+
+        min-height:
+            600px;
+
+        padding:
+            28px
+            3vw;
+
+    }
+
+
+    .matchesHead {
+
+        margin-bottom:
+            15px;
+
+    }
+
+
+    .matches .sectionHead h2 {
+
+        font-size:
+            40px;
+
+    }
+
+
+    .person {
+
+        height:
+            315px;
+
+    }
+
+
+    .personImage {
+
+        height:
+            205px;
+
+    }
+
+
+    .personContent {
+
+        padding:
+            12px
+            19px
+            14px;
+
+    }
+
+
+    .personOrb {
+
+        width:
+            175px;
+
+        height:
+            175px;
+
+        right:
+            -72px;
+
+        top:
+            -64px;
+
+    }
+
+
+    .person:nth-child(3)
+    .personOrb {
+
+        right:
+            -72px;
+
+        top:
+            -64px;
+
+    }
+
+
+    .person h3 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .person p {
+
+        font-size:
+            11px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(max-width: 900px) {
+
+    .matches {
+
+        min-height:
+            auto;
+
+        margin:
+            0 3vw;
+
+        padding:
+            52px
+            5vw;
+
+        border-radius:
+            30px;
+
+    }
+
+
+    .matchesHead {
+
+        margin-bottom:
+            25px;
+
+    }
+
+
+    .matches .sectionHead {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            14px;
+
+    }
+
+
+    .matchWrap {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            18px;
+
+    }
+
+
+    .person {
+
+        height:
+            390px;
+
+    }
+
+
+    .personImage {
+
+        height:
+            260px;
+
+    }
+
+
+    .personOrb {
+
+        width:
+            190px;
+
+        height:
+            190px;
+
+        right:
+            -80px;
+
+        top:
+            -68px;
+
+    }
+
+
+    .person:nth-child(3)
+    .personOrb {
+
+        right:
+            -80px;
+
+        top:
+            -68px;
+
+    }
+
+
+    .connector {
+
+        padding:
+            8px
+            0;
+
+    }
+
+
+    .connector .line {
+
+        width:
+            1px;
+
+        height:
+            65px;
+
+        margin:
+            auto;
+
+    }
+
+
+    .connector p {
+
+        margin-top:
+            12px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media
+(max-width: 540px) {
+
+    .matches {
+
+        margin:
+            0 3vw;
+
+        padding:
+            40px
+            5vw;
+
+        border-radius:
+            24px;
+
+    }
+
+
+    .matches .sectionHead h2 {
+
+        font-size:
+            clamp(
+                31px,
+                9.5vw,
+                40px
+            );
+
+        line-height:
+            1;
+
+        letter-spacing:
+            -2px;
+
+    }
+
+
+    .matches .sectionHead p {
+
+        font-size:
+            13px;
+
+    }
+
+
+    .person {
+
+        height:
+            340px;
+
+        border-radius:
+            22px;
+
+    }
+
+
+    .personImage {
+
+        height:
+            225px;
+
+    }
+
+
+    .personContent {
+
+        padding:
+            13px
+            17px
+            16px;
+
+    }
+
+
+    .personOrb {
+
+        width:
+            155px;
+
+        height:
+            155px;
+
+        right:
+            -65px;
+
+        top:
+            -55px;
+
+    }
+
+
+    .person:nth-child(3)
+    .personOrb {
+
+        right:
+            -65px;
+
+        top:
+            -55px;
+
+    }
+
+
+    .person h3 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .person p {
+
+        font-size:
+            11.5px;
+
+    }
+
+
+    .connector .line::after {
+
+        width:
+            44px;
+
+        height:
+            44px;
+
+        font-size:
+            18px;
+
+    }
+
+}
+
+</style>
+
+
+
+<!-- =========================================================
+     DAILY MATCHES JS
+========================================================= -->
+
+<script>
+
+/*
+   No section-specific JavaScript required.
+*/
+
+</script>
+
+
+<!-- =========================================================
+     05. PEOPLE
+     HTML
+========================================================= -->
+
+<section class="section people-section" id="people">
+
+    <!-- =========================
+         SECTION HEADER
+    ========================== -->
+
+    <div class="sectionHead peopleHead">
+
+        <div class="peopleHeadContent">
+
+            <div class="eyebrow">
+                People worth knowing
+            </div>
+
+            <h2>
+                Discover the person,
+                not just the <span>profile.</span>
+            </h2>
+
+            <p class="peopleSubtitle">
+                Every guest becomes a living discovery profile —
+                what they know, what they need, and who they could help.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PEOPLE GRID
+    ========================== -->
+
+    <div class="peopleGrid">
+
+
+        <!-- PERSON 01 -->
+
+        <div class="profile">
+
+            <div class="profileImage">
+
+                <img
+                    src="https://randomuser.me/api/portraits/women/44.jpg"
+                    alt="Rhea Kapoor"
+                    style="object-fit:contain; object-position:center center; background:#181a17"
+                >
+
+                <div class="profileShade"></div>
+
+            </div>
+
+
+            <div class="info">
+
+                <h4>
+                    Rhea Kapoor
+                </h4>
+
+                <p>
+                    Design Entrepreneur · Chennai
+                </p>
+
+                <div class="signal">
+                    <b>LOOKING FOR</b>
+                    Hospitality collaborations
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PERSON 02 -->
+
+        <div class="profile">
+
+            <div class="profileImage">
+
+                <img
+                    src="https://randomuser.me/api/portraits/men/32.jpg"
+                    alt="Arjun Rao"
+                    style="object-fit:contain; object-position:center center; background:#181a17"
+                >
+
+                <div class="profileShade"></div>
+
+            </div>
+
+
+            <div class="info">
+
+                <h4>
+                    Arjun Rao
+                </h4>
+
+                <p>
+                    AI Founder · Bengaluru
+                </p>
+
+                <div class="signal">
+                    <b>CAN HELP WITH</b>
+                    Product &amp; AI strategy
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PERSON 03 -->
+
+        <div class="profile">
+
+            <div class="profileImage">
+
+                <img
+                    src="https://randomuser.me/api/portraits/women/68.jpg"
+                    alt="Meera Iyer"
+                    style="object-fit:contain; object-position:center center; background:#181a17"
+                >
+
+                <div class="profileShade"></div>
+
+            </div>
+
+
+            <div class="info">
+
+                <h4>
+                    Meera Iyer
+                </h4>
+
+                <p>
+                    Healthcare Leader · Mumbai
+                </p>
+
+                <div class="signal">
+                    <b>INTERESTED IN</b>
+                    Health-tech partnerships
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PERSON 04 -->
+
+        <div class="profile">
+
+            <div class="profileImage">
+
+                <img
+                    src="https://randomuser.me/api/portraits/men/46.jpg"
+                    alt="Karan Shah"
+                    style="object-fit:contain; object-position:center center; background:#181a17"
+                >
+
+                <div class="profileShade"></div>
+
+            </div>
+
+
+            <div class="info">
+
+                <h4>
+                    Karan Shah
+                </h4>
+
+                <p>
+                    Investor · India / SEA
+                </p>
+
+                <div class="signal">
+                    <b>LOOKING FOR</b>
+                    Early-stage founders
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PEOPLE CSS
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.people-section {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100svh;
+
+    min-height: 620px;
+
+    box-sizing: border-box;
+
+    padding:
+        48px
+        5vw
+        36px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.peopleHead {
+
+    display: block;
+
+    margin-bottom: 24px;
+
+}
+
+
+.peopleHeadContent {
+
+    width: 100%;
+
+    max-width: 1180px;
+
+}
+
+
+
+/* EYEBROW */
+
+.peopleHead .eyebrow {
+
+    margin-bottom: 9px;
+
+}
+
+
+
+/* =========================================================
+   MAIN TITLE
+========================================================= */
+
+.peopleHead h2 {
+
+    margin: 0;
+
+    max-width: 1100px;
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size:
+        clamp(
+            42px,
+            4.25vw,
+            64px
+        );
+
+    font-weight: 650;
+
+    line-height: .98;
+
+    letter-spacing:
+        -3px;
+
+}
+
+
+
+/* GREEN WORD */
+
+.peopleHead h2 span {
+
+    color:
+        var(--acid);
+
+}
+
+
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.peopleSubtitle {
+
+    margin:
+        15px
+        0
+        0;
+
+    max-width:
+        880px;
+
+    color:
+        #aeb2a9;
+
+    font-size:
+        17px;
+
+    line-height:
+        1.6;
+
+    font-weight:
+        400;
+
+}
+
+
+
+/* =========================================================
+   PEOPLE GRID
+========================================================= */
+
+.peopleGrid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        15px;
+
+    align-items:
+        stretch;
+
+}
+
+
+
+/* =========================================================
+   PROFILE CARD
+========================================================= */
+
+.profile {
+
+    position: relative;
+
+    height:
+        400px;
+
+    overflow: hidden;
+
+    border-radius:
+        22px;
+
+    background:
+        linear-gradient(
+            160deg,
+            #20241e,
+            #101210
+        );
+
+    border:
+        1px solid
+        var(--line);
+
+    box-shadow:
+        0 18px 45px
+        rgba(0,0,0,.2);
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        border-color .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+
+/* CARD HOVER */
+
+.profile:hover {
+
+    border-color:
+        rgba(215,255,82,.3);
+
+    box-shadow:
+        0 25px 65px
+        rgba(0,0,0,.3);
+
+}
+
+
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
+.profileImage {
+
+    position: absolute;
+
+    inset:
+        0
+        0
+        132px
+        0;
+
+    overflow: hidden;
+
+    background:
+        #20251e;
+
+}
+
+
+
+/* ACTUAL IMAGE */
+
+.profileImage img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    transform:
+        scale(1.01);
+
+    filter:
+        saturate(.88)
+        contrast(1.03);
+
+    transition:
+        transform .7s cubic-bezier(.16,1,.3,1),
+        filter .4s ease;
+
+}
+
+
+
+/* IMAGE HOVER */
+
+.profile:hover
+.profileImage img {
+
+    transform:
+        scale(1.06);
+
+    filter:
+        saturate(1)
+        contrast(1.05);
+
+}
+
+
+
+/* =========================================================
+   IMAGE SHADE
+========================================================= */
+
+.profileShade {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            transparent 42%,
+            rgba(9,11,9,.72) 100%
+        );
+
+}
+
+
+
+/* =========================================================
+   INFO
+========================================================= */
+
+.profile .info {
+
+    position: absolute;
+
+    z-index: 3;
+
+    left: 20px;
+
+    right: 20px;
+
+    bottom: 18px;
+
+}
+
+
+
+/* NAME */
+
+.profile h4 {
+
+    font:
+        650
+        24px
+        Manrope;
+
+    margin:
+        0
+        0
+        5px;
+
+    letter-spacing:
+        -.8px;
+
+}
+
+
+
+/* ROLE */
+
+.profile p {
+
+    font-size:
+        13px;
+
+    color:
+        #aeb2a9;
+
+    margin:
+        0
+        0
+        13px;
+
+}
+
+
+
+/* =========================================================
+   SIGNAL
+========================================================= */
+
+.signal {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap:
+        5px
+        7px;
+
+    font-size:
+        11px;
+
+    line-height:
+        1.45;
+
+    border-top:
+        1px solid
+        #343834;
+
+    padding-top:
+        11px;
+
+    color:
+        #d8dbd2;
+
+}
+
+
+.signal b {
+
+    color:
+        var(--acid);
+
+    font-weight:
+        600;
+
+}
+
+
+
+/* =========================================================
+   SHORT DESKTOP / LAPTOP
+========================================================= */
+
+@media
+(min-width: 901px)
+and (max-height: 820px) {
+
+    .people-section {
+
+        min-height:
+            560px;
+
+        padding:
+            34px
+            5vw
+            28px;
+
+    }
+
+
+    .peopleHead {
+
+        margin-bottom:
+            18px;
+
+    }
+
+
+    .peopleHead .eyebrow {
+
+        margin-bottom:
+            6px;
+
+    }
+
+
+    .peopleHead h2 {
+
+        font-size:
+            clamp(
+                38px,
+                3.7vw,
+                50px
+            );
+
+    }
+
+
+    .peopleSubtitle {
+
+        margin-top:
+            10px;
+
+        font-size:
+            15px;
+
+    }
+
+
+    .profile {
+
+        height:
+            350px;
+
+    }
+
+
+    .profileImage {
+
+        inset:
+            0
+            0
+            118px
+            0;
+
+    }
+
+
+    .profile .info {
+
+        left:
+            16px;
+
+        right:
+            16px;
+
+        bottom:
+            14px;
+
+    }
+
+
+    .profile h4 {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .profile p {
+
+        font-size:
+            11px;
+
+        margin-bottom:
+            9px;
+
+    }
+
+
+    .signal {
+
+        padding-top:
+            8px;
+
+        font-size:
+            9.7px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   VERY SHORT DESKTOP
+========================================================= */
+
+@media
+(min-width: 901px)
+and (max-height: 680px) {
+
+    .people-section {
+
+        min-height:
+            520px;
+
+        padding:
+            26px
+            5vw;
+
+    }
+
+
+    .peopleHead {
+
+        margin-bottom:
+            14px;
+
+    }
+
+
+    .peopleHead h2 {
+
+        font-size:
+            38px;
+
+    }
+
+
+    .peopleSubtitle {
+
+        margin-top:
+            8px;
+
+        font-size:
+            14px;
+
+    }
+
+
+    .profile {
+
+        height:
+            300px;
+
+    }
+
+
+    .profileImage {
+
+        inset:
+            0
+            0
+            105px
+            0;
+
+    }
+
+
+    .profile h4 {
+
+        font-size:
+            19px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(max-width: 900px) {
+
+    .people-section {
+
+        height:
+            auto;
+
+        min-height:
+            auto;
+
+        padding:
+            55px
+            5vw;
+
+        overflow:
+            visible;
+
+    }
+
+
+    .peopleHead {
+
+        margin-bottom:
+            22px;
+
+    }
+
+
+    .peopleHead h2 {
+
+        font-size:
+            clamp(
+                36px,
+                6.5vw,
+                52px
+            );
+
+        line-height:
+            1;
+
+    }
+
+
+    .peopleSubtitle {
+
+        font-size:
+            15px;
+
+        max-width:
+            720px;
+
+    }
+
+
+    .peopleGrid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
+        gap:
+            15px;
+
+    }
+
+
+    .profile {
+
+        height:
+            370px;
+
+    }
+
+
+    .profileImage {
+
+        inset:
+            0
+            0
+            125px
+            0;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media
+(max-width: 540px) {
+
+    .people-section {
+
+        padding:
+            46px
+            5vw;
+
+    }
+
+
+    .peopleHead {
+
+        margin-bottom:
+            20px;
+
+    }
+
+
+    .peopleHead h2 {
+
+        font-size:
+            clamp(
+                32px,
+                9.5vw,
+                42px
+            );
+
+        line-height:
+            1.02;
+
+        letter-spacing:
+            -2px;
+
+    }
+
+
+    .peopleSubtitle {
+
+        margin-top:
+            11px;
+
+        font-size:
+            14px;
+
+        line-height:
+            1.6;
+
+    }
+
+
+
+    /* HORIZONTAL MOBILE CARDS */
+
+    .peopleGrid {
+
+        display: grid;
+
+        grid-auto-flow:
+            column;
+
+        grid-auto-columns:
+            82vw;
+
+        grid-template-columns:
+            none;
+
+        gap:
+            12px;
+
+        overflow-x:
+            auto;
+
+        overflow-y:
+            hidden;
+
+        padding-bottom:
+            12px;
+
+        scroll-snap-type:
+            x mandatory;
+
+        scrollbar-width:
+            none;
+
+        -webkit-overflow-scrolling:
+            touch;
+
+    }
+
+
+    .peopleGrid::-webkit-scrollbar {
+
+        display:
+            none;
+
+    }
+
+
+    .profile {
+
+        height:
+            360px;
+
+        scroll-snap-align:
+            start;
+
+    }
+
+
+    .profileImage {
+
+        inset:
+            0
+            0
+            122px
+            0;
+
+    }
+
+
+    .profile h4 {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .profile p {
+
+        font-size:
+            11.5px;
+
+    }
+
+
+    .signal {
+
+        font-size:
+            10px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media
+(prefers-reduced-motion: reduce) {
+
+    .profile {
+
+        transform:
+            none !important;
+
+    }
+
+
+    .profileImage img {
+
+        transition:
+            none;
+
+    }
+
+}
+.signal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    border-top: 1px solid #343834;
+
+    padding-top: 12px;
+
+    color: #d8dbd2;
+}
+
+.signal b {
+    color: var(--acid);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: .2px;
+}
+</style>
+
+
+
+<!-- =========================================================
+     PEOPLE JS
+========================================================= -->
+
+<script>
+
+(function () {
+
+    const profiles =
+        document.querySelectorAll(
+            '#people .profile'
+        );
+
+
+    const canHover =
+        window.matchMedia(
+            '(hover:hover) and (pointer:fine)'
+        ).matches;
+
+
+    if (!canHover) {
+        return;
+    }
+
+
+    profiles.forEach(
+        function (el) {
+
+
+            el.addEventListener(
+                'mousemove',
+                function (e) {
+
+
+                    const r =
+                        el.getBoundingClientRect();
+
+
+                    const x =
+                        (
+                            e.clientX -
+                            r.left
+                        ) /
+                        r.width -
+                        .5;
+
+
+                    const y =
+                        (
+                            e.clientY -
+                            r.top
+                        ) /
+                        r.height -
+                        .5;
+
+
+                    el.style.transform =
+                        `
+                        perspective(900px)
+                        rotateY(${x * 3}deg)
+                        rotateX(${-y * 3}deg)
+                        translateY(-5px)
+                        `;
+
+                }
+            );
+
+
+            el.addEventListener(
+                'mouseleave',
+                function () {
+
+                    el.style.transform =
+                        '';
+
+                }
+            );
+
+
+        }
+    );
+
+
+})();
+
+</script>
+
+
+<!-- =========================================================
+     06. MARQUEE
+     HTML
+========================================================= -->
+
+<div class="marquee">
+
+    <div class="marqueeTrack">
+
+        <span>TECHNOLOGY</span>
+        <span>HEALTHCARE</span>
+        <span>MEDIA</span>
+        <span>FASHION</span>
+        <span>FINANCE</span>
+        <span>EDUCATION</span>
+        <span>STARTUPS</span>
+        <span>HOSPITALITY</span>
+
+        <span>TECHNOLOGY</span>
+        <span>HEALTHCARE</span>
+        <span>MEDIA</span>
+        <span>FASHION</span>
+        <span>FINANCE</span>
+        <span>EDUCATION</span>
+        <span>STARTUPS</span>
+        <span>HOSPITALITY</span>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MARQUEE CSS
+========================================================= -->
+
+<style>
+
+.marquee {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-top:
+        1px solid var(--line);
+
+    border-bottom:
+        1px solid var(--line);
+
+    /*
+       Reduced marquee height
+    */
+    padding:
+        12px 0;
+
+    /*
+       Bring marquee closer to previous section
+    */
+    margin-top:
+        -14px;
+
+}
+
+
+/* TRACK */
+
+.marqueeTrack {
+
+    display: flex;
+
+    align-items: center;
+
+    width: max-content;
+
+    gap:
+        42px;
+
+    animation:
+        marquee 25s linear infinite;
+
+}
+
+
+/* TEXT */
+
+.marquee span {
+
+    font:
+        500
+        22px
+        Manrope;
+
+    line-height: 1;
+
+    color:
+        #73786f;
+
+    white-space:
+        nowrap;
+
+}
+
+
+/* GREEN WORD */
+
+.marquee span:nth-child(3n) {
+
+    color:
+        var(--acid);
+
+}
+
+
+/* ANIMATION */
+
+@keyframes marquee {
+
+    to {
+
+        transform:
+            translateX(-50%);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .marquee {
+
+        padding:
+            10px 0;
+
+        margin-top:
+            -8px;
+
+    }
+
+
+    .marqueeTrack {
+
+        gap:
+            32px;
+
+    }
+
+
+    .marquee span {
+
+        font-size:
+            18px;
+
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     MARQUEE JS
+========================================================= -->
+
+<script>
+
+/* No section-specific JavaScript required. */
+
+</script>
+
+
+<!-- =========================================================
+     07. SHORTS / SIGNALS
+     HTML
+========================================================= -->
+
+<section class="shorts-section" id="shorts">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="shortsHead">
+
+        <div class="eyebrow">
+            Shorts / Signals
+        </div>
+
+        <h2
+            id="shortsTyping"
+            data-text="40 seconds can open a door."
+            aria-label="40 seconds can open a door."
+        ></h2>
+
+        <p class="shortsSubtitle">
+            Every short leads somewhere: the full conversation,
+            the person, their company, or a relevant match.
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         YOUTUBE INFINITE SCROLL
+         
+         IMPORTANT:
+         YouTube link மட்டும் data-youtube="" குள்ள paste பண்ணுங்க.
+         
+         Thumbnail JS automatically generate பண்ணும்.
+    ====================================================== -->
+
+    <div class="videoMarquee">
+
+        <div class="videoTrack" id="shortsVideoTrack">
+            <a
+                class="videoItem"
+                href="https://www.youtube.com/watch?v=osIaq96sY48"
+                data-youtube="https://www.youtube.com/watch?v=osIaq96sY48"
+                title="Beyond the Royal Title: Nawabzada Asif Ali Like You’ve Never Heard Him Before"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    class="youtubeThumb"
+                    src="https://img.youtube.com/vi/osIaq96sY48/hqdefault.jpg"
+                    alt="Beyond the Royal Title: Nawabzada Asif Ali Like You’ve Never Heard Him Before"
+                >
+            </a>
+
+            <a
+                class="videoItem"
+                href="https://www.youtube.com/watch?v=tasbPpvN-nI"
+                data-youtube="https://www.youtube.com/watch?v=tasbPpvN-nI"
+                title="From 180 to 58,000+ Students: The Incredible VIT Story | Dr. Sekar Viswanathan"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    class="youtubeThumb"
+                    src="https://img.youtube.com/vi/tasbPpvN-nI/hqdefault.jpg"
+                    alt="From 180 to 58,000+ Students: The Incredible VIT Story | Dr. Sekar Viswanathan"
+                >
+            </a>
+
+            <a
+                class="videoItem"
+                href="https://www.youtube.com/watch?v=QGg7f_-OdaM"
+                data-youtube="https://www.youtube.com/watch?v=QGg7f_-OdaM"
+                title="The Man Behind BlackSheep: RJ Vigneshkanth Like You’ve Never Seen Him Before!"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    class="youtubeThumb"
+                    src="https://img.youtube.com/vi/QGg7f_-OdaM/hqdefault.jpg"
+                    alt="The Man Behind BlackSheep: RJ Vigneshkanth Like You’ve Never Seen Him Before!"
+                >
+            </a>
+
+            <a
+                class="videoItem"
+                href="https://www.youtube.com/watch?v=M2OvjibIkCg"
+                data-youtube="https://www.youtube.com/watch?v=M2OvjibIkCg"
+                title="What It Takes to Become a Top Doctor | Dr. Ramakrishnan"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    class="youtubeThumb"
+                    src="https://img.youtube.com/vi/M2OvjibIkCg/hqdefault.jpg"
+                    alt="What It Takes to Become a Top Doctor | Dr. Ramakrishnan"
+                >
+            </a>
+
+            <a
+                class="videoItem"
+                href="https://www.youtube.com/watch?v=j2LaesJ8Jgk"
+                data-youtube="https://www.youtube.com/watch?v=j2LaesJ8Jgk"
+                title="EXCLUSIVE: How Anil Dangi Built a Furniture EMPIRE From Nothing!"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    class="youtubeThumb"
+                    src="https://img.youtube.com/vi/j2LaesJ8Jgk/hqdefault.jpg"
+                    alt="EXCLUSIVE: How Anil Dangi Built a Furniture EMPIRE From Nothing!"
+                >
+            </a>
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         LOWER CARDS
+    ====================================================== -->
+
+ <!-- =========================================================
+     LOWER IMAGE CARDS
+========================================================= -->
+
+<div class="shortCards">
+
+    <!-- CARD 01 -->
+    <div
+        class="shortCard"
+        style="--glow:#705b48"
+    >
+
+        <div class="shortCardImage">
+
+            <img
+                src="https://picsum.photos/seed/respect-isnt-inherited/800/900"
+                alt="Respect isn't inherited"
+            >
+
+            <div class="shortCardShade"></div>
+
+        </div>
+
+
+        <div class="shortCardContent">
+
+            <h3>
+                “Respect isn't inherited.”
+            </h3>
+
+            <p>
+                View person → Full conversation → Related matches
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- CARD 02 -->
+    <div
+        class="shortCard"
+        style="--glow:#3e6470"
+    >
+
+        <div class="shortCardImage">
+
+            <img
+                src="https://picsum.photos/seed/introduction-changed-everything/800/900"
+                alt="The one introduction that changed everything"
+            >
+
+            <div class="shortCardShade"></div>
+
+        </div>
+
+
+        <div class="shortCardContent">
+
+            <h3>
+                The one introduction that changed everything.
+            </h3>
+
+            <p>
+                The Connection Story
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- CARD 03 -->
+    <div
+        class="shortCard"
+        style="--glow:#625070"
+    >
+
+        <div class="shortCardImage">
+
+            <img
+                src="https://picsum.photos/seed/what-are-you-trying-to-make-happen/800/900"
+                alt="What are you trying to make happen"
+            >
+
+            <div class="shortCardShade"></div>
+
+        </div>
+
+
+        <div class="shortCardContent">
+
+            <h3>
+                What are you trying to make happen?
+            </h3>
+
+            <p>
+                One Intro Away
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SHORTS / SIGNALS CSS
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.shorts-section {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100svh;
+
+    min-height: 650px;
+
+    box-sizing: border-box;
+
+    padding:
+        32px
+        0
+        26px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.shortsHead {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding:
+        0
+        5vw;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.shortsHead .eyebrow {
+
+    margin-bottom:
+        8px;
+
+}
+
+
+
+/* =========================================================
+   TYPING TITLE
+========================================================= */
+
+.shortsHead h2 {
+
+    margin: 0;
+
+    max-width:
+        1000px;
+
+    min-height:
+        1.08em;
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size:
+        clamp(
+            40px,
+            4vw,
+            58px
+        );
+
+    font-weight:
+        650;
+
+    line-height: 1;
+
+    letter-spacing:
+        -2.8px;
+
+    color:
+        #f5f6f2;
+
+}
+
+
+
+/* CURSOR */
+
+.shortsHead h2::after {
+
+    content: "";
+
+    display:
+        inline-block;
+
+    width:
+        3px;
+
+    height:
+        .8em;
+
+    margin-left:
+        7px;
+
+    background:
+        var(--acid);
+
+    animation:
+        shortsCursorBlink
+        .75s
+        steps(1)
+        infinite;
+
+}
+
+
+@keyframes shortsCursorBlink {
+
+    0%,
+    45% {
+
+        opacity: 1;
+
+    }
+
+
+    46%,
+    100% {
+
+        opacity: 0;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.shortsSubtitle {
+
+    max-width:
+        900px;
+
+    margin:
+        10px
+        0
+        0;
+
+    color:
+        #b0b4ab;
+
+    font-size:
+        16px;
+
+    line-height:
+        1.55;
+
+}
+
+
+
+/* =========================================================
+   VIDEO MARQUEE
+========================================================= */
+
+.videoMarquee {
+
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+
+/* EDGE FADE */
+
+.videoMarquee::before,
+.videoMarquee::after {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: 10;
+
+    top: 0;
+    bottom: 0;
+
+    width:
+        5vw;
+
+    pointer-events:
+        none;
+
+}
+
+
+.videoMarquee::before {
+
+    left: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--bg),
+            transparent
+        );
+
+}
+
+
+.videoMarquee::after {
+
+    right: 0;
+
+    background:
+        linear-gradient(
+            -90deg,
+            var(--bg),
+            transparent
+        );
+
+}
+
+
+
+/* =========================================================
+   VIDEO TRACK
+========================================================= */
+
+.videoTrack {
+
+    display: flex;
+
+    align-items: center;
+
+    width: max-content;
+
+    gap:
+        14px;
+
+    will-change:
+        transform;
+
+    animation:
+        shortsVideoScroll
+        34s
+        linear
+        infinite;
+
+}
+
+
+
+/* PAUSE WHEN HOVER */
+
+.videoMarquee:hover
+.videoTrack {
+
+    animation-play-state:
+        paused;
+
+}
+
+
+
+@keyframes shortsVideoScroll {
+
+    from {
+
+        transform:
+            translateX(0);
+
+    }
+
+
+    to {
+
+        transform:
+            translateX(-50%);
+
+    }
+
+}
+
+
+
+/* =========================================================
+   YOUTUBE VIDEO CARD
+========================================================= */
+
+.videoItem {
+
+    position: relative;
+
+    display: block;
+
+    flex:
+        0 0
+        clamp(
+            320px,
+            27vw,
+            470px
+        );
+
+    aspect-ratio:
+        16 / 7.5;
+
+    overflow: hidden;
+
+    border-radius:
+        9px;
+
+    background:
+        #151615;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    text-decoration:
+        none;
+
+}
+
+
+
+/* =========================================================
+   REAL YOUTUBE THUMBNAIL
+========================================================= */
+
+.youtubeThumb {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position:
+        center;
+
+    filter:
+        saturate(1.18)
+        brightness(1.04)
+        contrast(1.03);
+
+    transform:
+        scale(1.01);
+
+    transition:
+        transform .65s
+        cubic-bezier(.16,1,.3,1),
+        filter .45s ease;
+
+}
+
+
+
+/* HOVER */
+
+.videoItem:hover
+.youtubeThumb {
+
+    transform:
+        scale(1.055);
+
+    filter:
+        saturate(1.28)
+        brightness(1.08)
+        contrast(1.04);
+
+}
+
+
+
+/* SUBTLE OVERLAY */
+
+.videoItem::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.01),
+            rgba(0,0,0,.05)
+        );
+
+}
+
+
+
+/* =========================================================
+   LOWER CARDS
+========================================================= */
+
+.shortCards {
+
+    width:
+        90%;
+
+    margin:
+        0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        14px;
+
+}
+
+
+
+/* =========================================================
+   SHORT CARD
+========================================================= */
+
+.shortCard {
+
+    position: relative;
+
+    min-height:
+        145px;
+
+    box-sizing:
+        border-box;
+
+    padding:
+        18px
+        20px;
+
+    overflow: hidden;
+
+    border-radius:
+        18px;
+
+    border:
+        1px solid
+        var(--line);
+
+    background:
+        #0d0f0d;
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        border-color .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+
+/* GLOW */
+
+.shortCard::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            circle at 85% 20%,
+            var(--glow),
+            transparent 45%
+        );
+
+    opacity:
+        .14;
+
+}
+
+
+
+/* HOVER */
+
+.shortCard:hover {
+
+    border-color:
+        rgba(215,255,82,.3);
+
+    box-shadow:
+        0 18px 45px
+        rgba(0,0,0,.25);
+
+}
+
+
+
+/* TIME */
+
+.shortTime {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: inline-flex;
+
+    padding:
+        5px
+        9px;
+
+    margin-bottom:
+        12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    border-radius:
+        999px;
+
+    color:
+        #c9cdc3;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+
+/* TITLE */
+
+.shortCard h3 {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin:
+        0
+        0
+        7px;
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size:
+        clamp(
+            18px,
+            1.5vw,
+            23px
+        );
+
+    font-weight:
+        650;
+
+    line-height:
+        1.08;
+
+    letter-spacing:
+        -.8px;
+
+}
+
+
+
+/* DESCRIPTION */
+
+.shortCard p {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin: 0;
+
+    color:
+        #a5aaa0;
+
+    font-size:
+        11px;
+
+    line-height:
+        1.45;
+
+}
+
+
+
+/* =========================================================
+   LAPTOP SHORT HEIGHT
+========================================================= */
+
+@media
+(min-width: 901px)
+and (max-height: 820px) {
+
+    .shorts-section {
+
+        min-height:
+            590px;
+
+        padding:
+            24px
+            0
+            20px;
+
+    }
+
+
+    .shortsHead {
+
+        margin-bottom:
+            12px;
+
+    }
+
+
+    .shortsHead h2 {
+
+        font-size:
+            clamp(
+                34px,
+                3.5vw,
+                48px
+            );
+
+    }
+
+
+    .shortsSubtitle {
+
+        margin-top:
+            7px;
+
+        font-size:
+            14px;
+
+    }
+
+
+    .videoMarquee {
+
+        margin-bottom:
+            12px;
+
+    }
+
+
+    .videoItem {
+
+        flex-basis:
+            clamp(
+                290px,
+                25vw,
+                400px
+            );
+
+    }
+
+
+    .shortCard {
+
+        min-height:
+            125px;
+
+        padding:
+            14px
+            17px;
+
+    }
+
+
+    .shortTime {
+
+        margin-bottom:
+            8px;
+
+    }
+
+
+    .shortCard h3 {
+
+        font-size:
+            18px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   VERY SHORT SCREEN
+========================================================= */
+
+@media
+(min-width: 901px)
+and (max-height: 680px) {
+
+    .shorts-section {
+
+        min-height:
+            540px;
+
+        padding:
+            18px
+            0;
+
+    }
+
+
+    .shortsHead h2 {
+
+        font-size:
+            37px;
+
+    }
+
+
+    .shortsSubtitle {
+
+        font-size:
+            12.5px;
+
+    }
+
+
+    .videoItem {
+
+        flex-basis:
+            310px;
+
+    }
+
+
+    .shortCard {
+
+        min-height:
+            108px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(max-width: 900px) {
+
+    .shorts-section {
+
+        height:
+            auto;
+
+        min-height:
+            100svh;
+
+        padding:
+            52px
+            0;
+
+    }
+
+
+    .videoItem {
+
+        flex-basis:
+            360px;
+
+    }
+
+
+    .shortCards {
+
+        overflow-x:
+            auto;
+
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(
+                    280px,
+                    1fr
+                )
+            );
+
+        scrollbar-width:
+            none;
+
+        padding-bottom:
+            10px;
+
+    }
+
+
+    .shortCards::-webkit-scrollbar {
+
+        display:
+            none;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media
+(max-width: 540px) {
+
+    .shorts-section {
+
+        padding:
+            42px
+            0;
+
+    }
+
+
+    .shortsHead {
+
+        padding:
+            0
+            5vw;
+
+    }
+
+
+    .shortsHead h2 {
+
+        font-size:
+            clamp(
+                32px,
+                9vw,
+                42px
+            );
+
+        line-height:
+            1;
+
+        letter-spacing:
+            -2px;
+
+    }
+
+
+    .shortsSubtitle {
+
+        font-size:
+            13px;
+
+    }
+
+
+    .videoTrack {
+
+        gap:
+            10px;
+
+        animation-duration:
+            28s;
+
+    }
+
+
+    .videoItem {
+
+        flex-basis:
+            80vw;
+
+    }
+
+
+    .shortCards {
+
+        width:
+            90%;
+
+        grid-auto-flow:
+            column;
+
+        grid-auto-columns:
+            82vw;
+
+        grid-template-columns:
+            none;
+
+        overflow-x:
+            auto;
+
+        scroll-snap-type:
+            x mandatory;
+
+    }
+
+
+    .shortCard {
+
+        scroll-snap-align:
+            start;
+
+        min-height:
+            135px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media
+(prefers-reduced-motion: reduce) {
+
+    .videoTrack {
+
+        animation:
+            none;
+
+    }
+
+
+    .shortCard {
+
+        transform:
+            none !important;
+
+    }
+
+}
+
+</style>
+<style>
+    /* =========================================================
+   LOWER CARD GRID
+========================================================= */
+
+.shortCards {
+
+    width: 92%;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.shortCard {
+
+    position: relative;
+
+    height: 245px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    border:
+        1px solid var(--line);
+
+    background:
+        #0d0f0d;
+
+    box-sizing: border-box;
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.shortCard:hover {
+
+    border-color:
+        rgba(215,255,82,.32);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.3);
+}
+
+
+/* =========================================================
+   IMAGE AREA
+========================================================= */
+
+.shortCardImage {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 135px;
+
+    overflow: hidden;
+
+    background:
+        #181a17;
+
+}
+
+
+/* ACTUAL IMAGE */
+
+.shortCardImage img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    transform:
+        scale(1.01);
+
+    filter:
+        grayscale(.3)
+        brightness(.85)
+        contrast(1.06);
+
+    transition:
+        transform .6s ease,
+        filter .4s ease;
+
+}
+
+
+/* HOVER */
+
+.shortCard:hover
+.shortCardImage img {
+
+    transform:
+        scale(1.055);
+
+    filter:
+        grayscale(0)
+        brightness(.95)
+        contrast(1.04);
+
+}
+
+
+/* IMAGE SHADE */
+
+.shortCardShade {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 48%,
+            rgba(7,8,7,.5) 100%
+        );
+
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.shortCardContent {
+
+    position: relative;
+
+    z-index: 2;
+
+    padding:
+        14px
+        18px
+        16px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* TITLE */
+
+.shortCard h3 {
+
+    margin:
+        0
+        0
+        7px;
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size:
+        clamp(
+            18px,
+            1.35vw,
+            22px
+        );
+
+    font-weight: 650;
+
+    line-height: 1.12;
+
+    letter-spacing:
+        -.7px;
+
+    color:
+        #f5f6f2;
+
+}
+
+
+/* DESCRIPTION */
+
+.shortCard p {
+
+    margin: 0;
+
+    color:
+        #aeb2a9;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.45;
+
+}
+
+
+/* =========================================================
+   SHORT LAPTOP
+========================================================= */
+
+@media
+(min-width:901px)
+and (max-height:820px) {
+
+    .shortCard {
+
+        height: 215px;
+
+    }
+
+
+    .shortCardImage {
+
+        height: 112px;
+
+    }
+
+
+    .shortCardContent {
+
+        padding:
+            11px
+            15px
+            13px;
+
+    }
+
+
+    .shortCard h3 {
+
+        font-size: 17px;
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .shortCard p {
+
+        font-size: 10.5px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media
+(max-width:540px) {
+
+    .shortCards {
+
+        width: 90%;
+
+        grid-auto-flow: column;
+
+        grid-auto-columns: 83vw;
+
+        grid-template-columns: none;
+
+        overflow-x: auto;
+
+        overflow-y: hidden;
+
+        gap: 12px;
+
+        padding-bottom: 10px;
+
+        scroll-snap-type: x mandatory;
+
+        scrollbar-width: none;
+
+    }
+
+
+    .shortCards::-webkit-scrollbar {
+
+        display: none;
+
+    }
+
+
+    .shortCard {
+
+        height: 235px;
+
+        scroll-snap-align: start;
+
+    }
+
+
+    .shortCardImage {
+
+        height: 125px;
+
+    }
+
+
+    .shortCard h3 {
+
+        font-size: 18px;
+
+    }
+
+
+    .shortCard p {
+
+        font-size: 11px;
+
+    }
+
+}
+</style>
+
+
+<!-- =========================================================
+     SHORTS / SIGNALS JS
+========================================================= -->
+
+<script>
+
+(function () {
+
+
+    /* =====================================================
+       YOUTUBE URL → VIDEO ID
+    ====================================================== */
+
+    function getYouTubeId(url) {
+
+        if (!url) {
+            return null;
+        }
+
+
+        url =
+            url.trim();
+
+
+        /* youtu.be/VIDEOID */
+
+        let match =
+            url.match(
+                /youtu\.be\/([^?&/]+)/
+            );
+
+        if (match) {
+            return match[1];
+        }
+
+
+        /* youtube.com/watch?v=VIDEOID */
+
+        match =
+            url.match(
+                /[?&]v=([^?&/]+)/
+            );
+
+        if (match) {
+            return match[1];
+        }
+
+
+        /* youtube.com/shorts/VIDEOID */
+
+        match =
+            url.match(
+                /youtube\.com\/shorts\/([^?&/]+)/
+            );
+
+        if (match) {
+            return match[1];
+        }
+
+
+        /* youtube.com/embed/VIDEOID */
+
+        match =
+            url.match(
+                /youtube\.com\/embed\/([^?&/]+)/
+            );
+
+        if (match) {
+            return match[1];
+        }
+
+
+        return null;
+
+    }
+
+
+
+    /* =====================================================
+       GENERATE THUMBNAILS AUTOMATICALLY
+    ====================================================== */
+
+    const track =
+        document.getElementById(
+            'shortsVideoTrack'
+        );
+
+
+    if (track) {
+
+
+        const originalItems =
+            Array.from(
+                track.querySelectorAll(
+                    '.videoItem'
+                )
+            );
+
+
+        originalItems.forEach(
+            function (item) {
+
+
+                const youtubeURL =
+                    item.getAttribute(
+                        'data-youtube'
+                    );
+
+
+                const id =
+                    getYouTubeId(
+                        youtubeURL
+                    );
+
+
+                const image =
+                    item.querySelector(
+                        '.youtubeThumb'
+                    );
+
+
+                /* SET LINK */
+
+                if (youtubeURL) {
+
+                    item.href =
+                        youtubeURL;
+
+                }
+
+
+                /* SET THUMBNAIL */
+
+                if (
+                    id && !youtubeURL.includes('YOUR_VIDEO_ID') &&
+                    image
+                ) {
+
+
+                    /*
+                       hqdefault is more reliable
+                       than maxresdefault.
+                    */
+
+                    image.src =
+                        'https://img.youtube.com/vi/' +
+                        id +
+                        '/hqdefault.jpg';
+
+
+                    /*
+                       Fallback if thumbnail fails.
+                    */
+
+                    image.onerror =
+                        function () {
+
+                            this.onerror =
+                                null;
+
+
+                            this.src =
+                                'https://img.youtube.com/vi/' +
+                                id +
+                                '/mqdefault.jpg';
+
+                        };
+
+                }
+
+            }
+        );
+
+
+
+        /* =================================================
+           AUTOMATIC DUPLICATE FOR SEAMLESS INFINITE LOOP
+        ================================================= */
+
+        originalItems.forEach(
+            function (item) {
+
+
+                const clone =
+                    item.cloneNode(
+                        true
+                    );
+
+
+                clone.setAttribute(
+                    'aria-hidden',
+                    'true'
+                );
+
+
+                track.appendChild(
+                    clone
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       TYPING ANIMATION
+    ====================================================== */
+
+    const title =
+        document.getElementById(
+            'shortsTyping'
+        );
+
+
+    if (title) {
+
+
+        const fullText =
+            title.getAttribute(
+                'data-text'
+            );
+
+
+        let index = 0;
+
+        let deleting = false;
+
+
+        const typingSpeed =
+            65;
+
+
+        const deletingSpeed =
+            32;
+
+
+        const fullPause =
+            1700;
+
+
+        const restartPause =
+            450;
+
+
+
+        function typeLoop() {
+
+
+            if (!deleting) {
+
+
+                index++;
+
+
+                title.textContent =
+                    fullText.substring(
+                        0,
+                        index
+                    );
+
+
+                if (
+                    index >=
+                    fullText.length
+                ) {
+
+
+                    deleting =
+                        true;
+
+
+                    setTimeout(
+                        typeLoop,
+                        fullPause
+                    );
+
+
+                    return;
+
+                }
+
+
+                setTimeout(
+                    typeLoop,
+                    typingSpeed
+                );
+
+            }
+
+
+            else {
+
+
+                index--;
+
+
+                title.textContent =
+                    fullText.substring(
+                        0,
+                        index
+                    );
+
+
+                if (
+                    index <= 0
+                ) {
+
+
+                    deleting =
+                        false;
+
+
+                    setTimeout(
+                        typeLoop,
+                        restartPause
+                    );
+
+
+                    return;
+
+                }
+
+
+                setTimeout(
+                    typeLoop,
+                    deletingSpeed
+                );
+
+            }
+
+        }
+
+
+        setTimeout(
+            typeLoop,
+            350
+        );
+
+    }
+
+
+
+    /* =====================================================
+       LOWER CARDS TILT
+    ====================================================== */
+
+    const cards =
+        document.querySelectorAll(
+            '#shorts .shortCard'
+        );
+
+
+    const canHover =
+        window.matchMedia(
+            '(hover:hover) and (pointer:fine)'
+        ).matches;
+
+
+    if (!canHover) {
+        return;
+    }
+
+
+    cards.forEach(
+        function (card) {
+
+
+            card.addEventListener(
+                'mousemove',
+                function (e) {
+
+
+                    const rect =
+                        card
+                        .getBoundingClientRect();
+
+
+                    const x =
+                        (
+                            e.clientX -
+                            rect.left
+                        ) /
+                        rect.width -
+                        .5;
+
+
+                    const y =
+                        (
+                            e.clientY -
+                            rect.top
+                        ) /
+                        rect.height -
+                        .5;
+
+
+                    card.style.transform =
+                        `
+                        perspective(900px)
+                        rotateY(${x * 3}deg)
+                        rotateX(${-y * 3}deg)
+                        translateY(-4px)
+                        `;
+
+                }
+            );
+
+
+            card.addEventListener(
+                'mouseleave',
+                function () {
+
+                    card.style.transform =
+                        '';
+
+                }
+            );
+
+
+        }
+    );
+
+
+})();
+
+</script>
+
+
+<!-- =========================================================
+     08. SHOWS - INTERACTIVE PREVIEW
+========================================================= -->
+
+<section class="shows-section" id="shows">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="showsHeader">
+
+        <div class="eyebrow">
+            Eight original formats
+        </div>
+
+        <h2>
+            Shows built for <span>discovery.</span>
+        </h2>
+
+        <p>
+            Content isn't the destination. It's the context that helps you
+            discover what — and who — matters next.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN INTERACTIVE AREA
+    ====================================================== -->
+
+    <div class="showsInteractive">
+
+
+        <!-- =================================================
+             LEFT FEATURE PREVIEW
+        ================================================== -->
+
+        <div class="showPreview" id="showPreview">
+
+            <img
+                id="previewImage"
+                src="https://picsum.photos/seed/krignal-journey/1200/900"
+                alt="Journeys That Inspire"
+            >
+
+            <div class="previewOverlay"></div>
+
+            <div class="previewGlow"></div>
+
+
+            <div class="previewTop">
+
+                <span
+                    class="previewNumber"
+                    id="previewNumber"
+                >
+                    01
+                </span>
+
+                <span class="previewBadge">
+                    KRIGNAL ORIGINAL
+                </span>
+
+            </div>
+
+
+            <div class="previewContent">
+
+                <div
+                    class="previewLabel"
+                    id="previewLabel"
+                >
+                    FLAGSHIP
+                </div>
+
+                <h3 id="previewTitle">
+                    Journeys That Inspire
+                </h3>
+
+                <p id="previewDescription">
+                    The real story behind professional journeys —
+                    beginnings, failures, relationships, turning points,
+                    leadership, lessons and legacy.
+                </p>
+
+            </div>
+
+
+            <div class="previewProgress">
+
+                <div
+                    class="previewProgressBar"
+                    id="previewProgressBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RIGHT SHOW SELECTOR
+        ================================================== -->
+
+        <div class="showSelector">
+
+
+            <!-- 01 -->
+
+            <article
+                class="showSelectCard active"
+                data-number="01"
+                data-label="FLAGSHIP"
+                data-title="Journeys That Inspire"
+                data-description="The real story behind professional journeys — beginnings, failures, relationships, turning points, leadership, lessons and legacy."
+                data-image="https://picsum.photos/seed/krignal-journey/1200/900"
+            >
+
+                <img
+                    src="https://picsum.photos/seed/krignal-journey/500/300"
+                    alt="Journeys That Inspire"
+                >
+
+                <div class="selectOverlay"></div>
+
+                <span class="selectNumber">
+                    01
+                </span>
+
+                <div class="selectContent">
+
+                    <h4>
+                        Journeys That Inspire
+                    </h4>
+
+                    <p>
+                        Professional journeys &amp; leadership.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 02 -->
+
+            <article
+                class="showSelectCard"
+                data-number="02"
+                data-label="CONVERSATIONS"
+                data-title="KrigNal Podcasts"
+                data-description="Deep conversations around industries, ideas, businesses and the people shaping what comes next."
+                data-image="https://picsum.photos/seed/krignal-podcast/1200/900"
+            >
+
+                <img
+                    src="https://picsum.photos/seed/krignal-podcast/500/300"
+                    alt="KrigNal Podcasts"
+                >
+
+                <div class="selectOverlay"></div>
+
+                <span class="selectNumber">
+                    02
+                </span>
+
+                <div class="selectContent">
+
+                    <h4>
+                        KrigNal Podcasts
+                    </h4>
+
+                    <p>
+                        Industries, ideas &amp; people.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 03 -->
+
+            <article
+                class="showSelectCard"
+                data-number="03"
+                data-label="CONNECTIONS"
+                data-title="Daily Matches"
+                data-description="Two people. One meaningful reason they should know each other. WHO × WHO × WHY THIS MATCH MAKES SENSE."
+                data-image="https://picsum.photos/seed/krignal-match/1200/900"
+            >
+
+                <img
+                    src="https://picsum.photos/seed/krignal-match/500/300"
+                    alt="Daily Matches"
+                >
+
+                <div class="selectOverlay"></div>
+
+                <span class="selectNumber">
+                    03
+                </span>
+
+                <div class="selectContent">
+
+                    <h4>
+                        Daily Matches
+                    </h4>
+
+                    <p>
+                        Connections that make sense.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 04 -->
+
+            <article
+                class="showSelectCard"
+                data-number="04"
+                data-label="INTELLIGENCE"
+                data-title="KrigNal Signals"
+                data-description="Fast, intelligent explainers designed to make you more informed before your next important conversation."
+                data-image="https://picsum.photos/seed/krignal-signals/1200/900"
+            >
+
+                <img
+                    src="https://picsum.photos/seed/krignal-signals/500/300"
+                    alt="KrigNal Signals"
+                >
+
+                <div class="selectOverlay"></div>
+
+                <span class="selectNumber">
+                    04
+                </span>
+
+                <div class="selectContent">
+
+                    <h4>
+                        KrigNal Signals
+                    </h4>
+
+                    <p>
+                        Fast intelligent explainers.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 05 -->
+
+            <article
+                class="showSelectCard"
+                data-number="05"
+                data-label="PEOPLE"
+                data-title="Beyond the Resume"
+                data-description="Go beyond job titles and designations to discover the person, experiences and ambitions behind the professional profile."
+                data-image="https://picsum.photos/seed/krignal-resume/1200/900"
+            >
+
+                <img
+                    src="https://picsum.photos/seed/krignal-resume/500/300"
+                    alt="Beyond the Resume"
+                >
+
+                <div class="selectOverlay"></div>
+
+                <span class="selectNumber">
+                    05
+                </span>
+
+                <div class="selectContent">
+
+                    <h4>
+                        Beyond the Resume
+                    </h4>
+
+                    <p>
+                        The human behind the title.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 06 -->
+
+            <article
+                class="showSelectCard"
+                data-number="06"
+                data-label="OPPORTUNITY"
+                data-title="One Intro Away"
+                data-description="Discover the person who could unlock the next step in what you're trying to build, create or make happen."
+                data-image="https://picsum.photos/seed/krignal-intro/1200/900"
+            >
+
+                <img
+                    src="https://picsum.photos/seed/krignal-intro/500/300"
+                    alt="One Intro Away"
+                >
+
+                <div class="selectOverlay"></div>
+
+                <span class="selectNumber">
+                    06
+                </span>
+
+                <div class="selectContent">
+
+                    <h4>
+                        One Intro Away
+                    </h4>
+
+                    <p>
+                        The relationship that unlocks next.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 07 -->
+
+            <article
+                class="showSelectCard"
+                data-number="07"
+                data-label="STORIES"
+                data-title="The Connection Story"
+                data-description="Before they met → how they met → what happened because of it. Stories about relationships that created real outcomes."
+                data-image="https://picsum.photos/seed/krignal-connection/1200/900"
+            >
+
+                <img
+                    src="https://picsum.photos/seed/krignal-connection/500/300"
+                    alt="The Connection Story"
+                >
+
+                <div class="selectOverlay"></div>
+
+                <span class="selectNumber">
+                    07
+                </span>
+
+                <div class="selectContent">
+
+                    <h4>
+                        The Connection Story
+                    </h4>
+
+                    <p>
+                        What happened because they met.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 08 -->
+
+            <article
+                class="showSelectCard"
+                data-number="08"
+                data-label="DISCOVERY"
+                data-title="KrigNal Discovers"
+                data-description="People, startups, businesses and ideas worth discovering before they become obvious to everyone else."
+                data-image="https://picsum.photos/seed/krignal-discover/1200/900"
+            >
+
+                <img
+                    src="https://picsum.photos/seed/krignal-discover/500/300"
+                    alt="KrigNal Discovers"
+                >
+
+                <div class="selectOverlay"></div>
+
+                <span class="selectNumber">
+                    08
+                </span>
+
+                <div class="selectContent">
+
+                    <h4>
+                        KrigNal Discovers
+                    </h4>
+
+                    <p>
+                        Discover it before it becomes obvious.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SHOWS CSS
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.shows-section {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100svh;
+
+    min-height: 650px;
+
+    box-sizing: border-box;
+
+    padding:
+        32px
+        5vw
+        30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+
+/* BACKGROUND GLOW */
+
+.shows-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    right: -350px;
+    top: -280px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(215,255,82,.06),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+}
+
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.showsHeader {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-bottom: 18px;
+
+}
+
+
+.showsHeader .eyebrow {
+
+    margin-bottom: 6px;
+
+}
+
+
+.showsHeader h2 {
+
+    margin: 0;
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size:
+        clamp(
+            38px,
+            3.7vw,
+            54px
+        );
+
+    font-weight: 650;
+
+    line-height: 1;
+
+    letter-spacing:
+        -2.8px;
+
+}
+
+
+.showsHeader h2 span {
+
+    color: var(--acid);
+
+}
+
+
+.showsHeader p {
+
+    max-width: 780px;
+
+    margin:
+        9px
+        0
+        0;
+
+    color:
+        #a4a9a0;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+
+/* =========================================================
+   MAIN INTERACTIVE AREA
+========================================================= */
+
+.showsInteractive {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        1.15fr
+        1fr;
+
+    gap: 14px;
+
+    height:
+        min(
+            510px,
+            63vh
+        );
+
+    min-height: 0;
+
+}
+
+
+
+/* =========================================================
+   LEFT PREVIEW
+========================================================= */
+
+.showPreview {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 26px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    background:
+        #111311;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.24);
+
+}
+
+
+
+/* IMAGE */
+
+.showPreview > img {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    transform:
+        scale(1.025);
+
+    filter:
+        brightness(.68)
+        contrast(1.05)
+        saturate(.8);
+
+    transition:
+        opacity .35s ease,
+        transform .8s cubic-bezier(.16,1,.3,1);
+
+}
+
+
+
+/* IMAGE CHANGE */
+
+.showPreview.previewChanging > img {
+
+    opacity: .18;
+
+    transform:
+        scale(1.07);
+
+}
+
+
+
+/* =========================================================
+   LEFT OVERLAY
+========================================================= */
+
+.previewOverlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(4,5,4,.05) 12%,
+            rgba(5,6,5,.18) 35%,
+            rgba(6,7,6,.95) 100%
+        );
+
+}
+
+
+
+.previewGlow {
+
+    position: absolute;
+
+    z-index: 2;
+
+    width: 450px;
+    height: 450px;
+
+    right: -170px;
+    bottom: -200px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(215,255,82,.22),
+            transparent 68%
+        );
+
+    pointer-events: none;
+
+}
+
+
+
+/* =========================================================
+   PREVIEW TOP
+========================================================= */
+
+.previewTop {
+
+    position: absolute;
+
+    z-index: 5;
+
+    top: 22px;
+    left: 24px;
+    right: 24px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+
+.previewNumber {
+
+    color:
+        var(--acid);
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+
+.previewBadge {
+
+    padding:
+        7px
+        10px;
+
+    border-radius:
+        999px;
+
+    border:
+        1px solid
+        rgba(215,255,82,.3);
+
+    background:
+        rgba(9,11,8,.6);
+
+    backdrop-filter:
+        blur(10px);
+
+    color:
+        var(--acid);
+
+    font-size: 8px;
+
+    letter-spacing:
+        1.5px;
+
+}
+
+
+
+/* =========================================================
+   PREVIEW CONTENT
+========================================================= */
+
+.previewContent {
+
+    position: absolute;
+
+    z-index: 5;
+
+    left: 28px;
+    right: 28px;
+    bottom: 34px;
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease;
+
+}
+
+
+.showPreview.previewChanging
+.previewContent {
+
+    opacity: 0;
+
+    transform:
+        translateY(12px);
+
+}
+
+
+
+.previewLabel {
+
+    margin-bottom:
+        9px;
+
+    color:
+        var(--acid);
+
+    font-size:
+        9px;
+
+    font-weight: 600;
+
+    letter-spacing:
+        1.7px;
+
+}
+
+
+
+.previewContent h3 {
+
+    max-width:
+        650px;
+
+    margin:
+        0
+        0
+        10px;
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size:
+        clamp(
+            38px,
+            3.4vw,
+            58px
+        );
+
+    font-weight: 650;
+
+    line-height: .96;
+
+    letter-spacing:
+        -3px;
+
+}
+
+
+
+.previewContent p {
+
+    max-width:
+        580px;
+
+    margin: 0;
+
+    color:
+        #c3c7bf;
+
+    font-size:
+        13px;
+
+    line-height: 1.55;
+
+}
+
+
+
+/* =========================================================
+   3 SECOND PROGRESS
+========================================================= */
+
+.previewProgress {
+
+    position: absolute;
+
+    z-index: 7;
+
+    left: 28px;
+    right: 28px;
+    bottom: 17px;
+
+    height: 2px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,.13);
+
+}
+
+
+.previewProgressBar {
+
+    width: 0;
+
+    height: 100%;
+
+    background:
+        var(--acid);
+
+}
+
+
+
+/* =========================================================
+   RIGHT SELECTOR
+========================================================= */
+
+.showSelector {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    grid-template-rows:
+        repeat(4, 1fr);
+
+    gap: 9px;
+
+    min-height: 0;
+
+}
+
+
+
+/* =========================================================
+   RIGHT CARD
+========================================================= */
+
+.showSelectCard {
+
+    position: relative;
+
+    min-height: 0;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    border-radius: 16px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    background:
+        #111311;
+
+    transition:
+        border-color .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+
+/* IMAGE */
+
+.showSelectCard > img {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    filter:
+        grayscale(.55)
+        brightness(.46)
+        contrast(1.05);
+
+    transform:
+        scale(1.02);
+
+    transition:
+        transform .5s ease,
+        filter .4s ease;
+
+}
+
+
+
+/* OVERLAY */
+
+.selectOverlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(7,8,7,.9),
+            rgba(7,8,7,.28)
+        );
+
+}
+
+
+
+/* =========================================================
+   ACTIVE / HOVER
+========================================================= */
+
+.showSelectCard:hover,
+.showSelectCard.active {
+
+    border-color:
+        rgba(215,255,82,.5);
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.2);
+
+}
+
+
+.showSelectCard:hover {
+
+    transform:
+        translateX(-3px);
+
+}
+
+
+.showSelectCard:hover > img,
+.showSelectCard.active > img {
+
+    transform:
+        scale(1.07);
+
+    filter:
+        grayscale(.05)
+        brightness(.58)
+        contrast(1.04);
+
+}
+
+
+
+/* ACTIVE GREEN LINE */
+
+.showSelectCard::after {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: 6;
+
+    left: 0;
+    top: 15%;
+    bottom: 15%;
+
+    width: 3px;
+
+    border-radius:
+        10px;
+
+    background:
+        var(--acid);
+
+    transform:
+        scaleY(0);
+
+    transition:
+        transform .3s ease;
+
+}
+
+
+.showSelectCard.active::after {
+
+    transform:
+        scaleY(1);
+
+}
+
+
+
+/* =========================================================
+   RIGHT NUMBER
+========================================================= */
+
+.selectNumber {
+
+    position: absolute;
+
+    z-index: 4;
+
+    right: 12px;
+    top: 10px;
+
+    color:
+        var(--acid);
+
+    font-size:
+        9px;
+
+    font-weight: 600;
+
+    letter-spacing:
+        1.3px;
+
+}
+
+
+
+/* =========================================================
+   RIGHT CONTENT
+========================================================= */
+
+.selectContent {
+
+    position: absolute;
+
+    z-index: 4;
+
+    left: 14px;
+    right: 35px;
+    bottom: 11px;
+
+}
+
+
+
+.selectContent h4 {
+
+    margin:
+        0
+        0
+        2px;
+
+    font-family:
+        Manrope,
+        sans-serif;
+
+    font-size:
+        clamp(
+            14px,
+            1.05vw,
+            17px
+        );
+
+    font-weight: 650;
+
+    line-height: 1.05;
+
+    letter-spacing:
+        -.5px;
+
+}
+
+
+
+.selectContent p {
+
+    margin: 0;
+
+    color:
+        #a8aca4;
+
+    font-size:
+        8.5px;
+
+    line-height: 1.25;
+
+}
+
+
+
+/* =========================================================
+   SHORT LAPTOP
+========================================================= */
+
+@media
+(min-width: 1001px)
+and (max-height: 820px) {
+
+    .shows-section {
+
+        min-height:
+            590px;
+
+        padding:
+            22px
+            5vw
+            20px;
+
+    }
+
+
+    .showsHeader {
+
+        margin-bottom:
+            12px;
+
+    }
+
+
+    .showsHeader h2 {
+
+        font-size:
+            clamp(
+                34px,
+                3.2vw,
+                44px
+            );
+
+    }
+
+
+    .showsHeader p {
+
+        font-size:
+            12px;
+
+    }
+
+
+    .showsInteractive {
+
+        height:
+            min(
+                440px,
+                62vh
+            );
+
+    }
+
+
+    .previewContent h3 {
+
+        font-size:
+            clamp(
+                34px,
+                3vw,
+                46px
+            );
+
+    }
+
+
+    .previewContent p {
+
+        font-size:
+            11px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(max-width: 1000px) {
+
+    .shows-section {
+
+        height: auto;
+
+        min-height: auto;
+
+        padding:
+            55px
+            5vw;
+
+        overflow:
+            visible;
+
+    }
+
+
+    .showsInteractive {
+
+        display: block;
+
+        height: auto;
+
+    }
+
+
+    .showPreview {
+
+        height:
+            470px;
+
+        margin-bottom:
+            14px;
+
+    }
+
+
+    .showSelector {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        grid-template-rows:
+            repeat(4, 130px);
+
+    }
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media
+(max-width: 600px) {
+
+    .shows-section {
+
+        padding:
+            45px
+            5vw;
+
+    }
+
+
+    .showsHeader h2 {
+
+        font-size:
+            clamp(
+                32px,
+                9vw,
+                42px
+            );
+
+        letter-spacing:
+            -2px;
+
+    }
+
+
+    .showsHeader p {
+
+        font-size:
+            13px;
+
+    }
+
+
+    .showPreview {
+
+        height:
+            430px;
+
+        border-radius:
+            20px;
+
+    }
+
+
+    .previewContent {
+
+        left:
+            20px;
+
+        right:
+            20px;
+
+        bottom:
+            31px;
+
+    }
+
+
+    .previewContent h3 {
+
+        font-size:
+            34px;
+
+        letter-spacing:
+            -2px;
+
+    }
+
+
+    .previewContent p {
+
+        font-size:
+            11px;
+
+    }
+
+
+    .showSelector {
+
+        display: grid;
+
+        grid-auto-flow:
+            column;
+
+        grid-auto-columns:
+            78vw;
+
+        grid-template-columns:
+            none;
+
+        grid-template-rows:
+            150px;
+
+        overflow-x:
+            auto;
+
+        overflow-y:
+            hidden;
+
+        gap:
+            10px;
+
+        padding-bottom:
+            10px;
+
+        scroll-snap-type:
+            x mandatory;
+
+        scrollbar-width:
+            none;
+
+    }
+
+
+    .showSelector::-webkit-scrollbar {
+
+        display:
+            none;
+
+    }
+
+
+    .showSelectCard {
+
+        scroll-snap-align:
+            start;
+
+    }
+
+
+    .selectContent h4 {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .selectContent p {
+
+        font-size:
+            10px;
+
+    }
+
+}
+
+</style>
+
+
+
+<!-- =========================================================
+     SHOWS JS
+========================================================= -->
+
+<script>
+
+(function () {
+
+    const cards =
+        Array.from(
+            document.querySelectorAll(
+                '#shows .showSelectCard'
+            )
+        );
+
+
+    const preview =
+        document.getElementById(
+            'showPreview'
+        );
+
+
+    const previewImage =
+        document.getElementById(
+            'previewImage'
+        );
+
+
+    const previewNumber =
+        document.getElementById(
+            'previewNumber'
+        );
+
+
+    const previewLabel =
+        document.getElementById(
+            'previewLabel'
+        );
+
+
+    const previewTitle =
+        document.getElementById(
+            'previewTitle'
+        );
+
+
+    const previewDescription =
+        document.getElementById(
+            'previewDescription'
+        );
+
+
+    const progressBar =
+        document.getElementById(
+            'previewProgressBar'
+        );
+
+
+    if (
+        !cards.length ||
+        !preview
+    ) {
+        return;
+    }
+
+
+
+    let currentIndex = 0;
+
+    let autoplayTimer = null;
+
+    let progressTimer = null;
+
+    let hovering = false;
+
+
+
+    /* =====================================================
+       CHANGE LEFT PREVIEW
+    ====================================================== */
+
+    function activateShow(
+        index,
+        animate = true
+    ) {
+
+        const card =
+            cards[index];
+
+
+        if (!card) {
+            return;
+        }
+
+
+        currentIndex =
+            index;
+
+
+        /* ACTIVE RIGHT CARD */
+
+        cards.forEach(
+            function (item) {
+
+                item.classList.remove(
+                    'active'
+                );
+
+            }
+        );
+
+
+        card.classList.add(
+            'active'
+        );
+
+
+
+        /* LEFT TRANSITION */
+
+        if (animate) {
+
+            preview.classList.add(
+                'previewChanging'
+            );
+
+        }
+
+
+        setTimeout(
+            function () {
+
+                previewImage.src =
+                    card.dataset.image;
+
+
+                previewImage.alt =
+                    card.dataset.title;
+
+
+                previewNumber.textContent =
+                    card.dataset.number;
+
+
+                previewLabel.textContent =
+                    card.dataset.label;
+
+
+                previewTitle.textContent =
+                    card.dataset.title;
+
+
+                previewDescription.textContent =
+                    card.dataset.description;
+
+
+                preview.classList.remove(
+                    'previewChanging'
+                );
+
+            },
+
+            animate
+                ? 180
+                : 0
+        );
+
+
+        restartProgress();
+
+    }
+
+
+
+    /* =====================================================
+       PROGRESS BAR
+    ====================================================== */
+
+    function restartProgress() {
+
+        if (!progressBar) {
+            return;
+        }
+
+
+        clearTimeout(
+            progressTimer
+        );
+
+
+        progressBar.style.transition =
+            'none';
+
+
+        progressBar.style.width =
+            '0%';
+
+
+        requestAnimationFrame(
+            function () {
+
+                requestAnimationFrame(
+                    function () {
+
+                        progressBar.style.transition =
+                            'width 3s linear';
+
+
+                        progressBar.style.width =
+                            '100%';
+
+                    }
+                );
+
+            }
+        );
+
+
+        progressTimer =
+            setTimeout(
+                function () {
+
+                    progressBar.style.width =
+                        '0%';
+
+                },
+
+                3000
+            );
+
+    }
+
+
+
+    /* =====================================================
+       AUTO CHANGE EVERY 3 SECONDS
+    ====================================================== */
+
+    function startAutoplay() {
+
+        clearInterval(
+            autoplayTimer
+        );
+
+
+        restartProgress();
+
+
+        autoplayTimer =
+            setInterval(
+                function () {
+
+                    if (hovering) {
+                        return;
+                    }
+
+
+                    const next =
+                        (
+                            currentIndex + 1
+                        ) %
+                        cards.length;
+
+
+                    activateShow(
+                        next
+                    );
+
+                },
+
+                3000
+            );
+
+    }
+
+
+
+    /* =====================================================
+       HOVER RIGHT CARD → LEFT PREVIEW
+    ====================================================== */
+
+    cards.forEach(
+        function (
+            card,
+            index
+        ) {
+
+
+            card.addEventListener(
+                'mouseenter',
+                function () {
+
+                    hovering =
+                        true;
+
+
+                    activateShow(
+                        index
+                    );
+
+                }
+            );
+
+
+            card.addEventListener(
+                'mouseleave',
+                function () {
+
+                    hovering =
+                        false;
+
+
+                    /*
+                       Restart 3-second cycle
+                       after user finishes hover
+                    */
+
+                    startAutoplay();
+
+                }
+            );
+
+
+
+            /* MOBILE / CLICK */
+
+            card.addEventListener(
+                'click',
+                function () {
+
+                    activateShow(
+                        index
+                    );
+
+
+                    startAutoplay();
+
+                }
+            );
+
+
+        }
+    );
+
+
+
+    /* =====================================================
+       INITIALIZE
+    ====================================================== */
+
+    activateShow(
+        0,
+        false
+    );
+
+
+    startAutoplay();
+
+
+})();
+
+</script>
+
+
+<!-- =========================================================
+     09. CTA
+     HTML
+========================================================= -->
+<section class="cta">
+<div>
+<div class="eyebrow">WATCH → DISCOVER → UNDERSTAND → SAVE → MATCH → CONNECT</div>
+<h2>You may be <span style="color:var(--acid)">one introduction</span> away.</h2>
+<p>Discover the people, ideas and opportunities that can move you forward.</p><button class="pill acid" onclick="openSearch()">Enter Krignal →</button>
+</div>
+</section>
+
+<!-- CTA CSS -->
+<style>
+.cta {
+
+            margin: 40px 2vw 30px;
+
+            border-radius: 42px;
+
+            min-height: 620px;
+
+            display: grid;
+
+            place-items: center;
+
+            text-align: center;
+
+            background: radial-gradient(circle at 50% 60%, #637a21 0, #202810 24%, #0a0b09 52%);
+
+            position: relative;
+
+            overflow: hidden
+
+        }
+
+.cta h2 {
+
+            font: 700 clamp(48px, 8vw, 105px)/.92 Manrope;
+
+            letter-spacing: -5px;
+
+            margin: 0;
+
+            max-width: 1000px
+
+        }
+
+.cta p {
+
+            color: #b9beb2;
+
+            font-size: 18px
+
+        }
+
+.cta .pill {
+
+            margin-top: 20px;
+
+            padding: 15px 25px
+
+        }
+
+@media (max-width:540px) {
+.cta {
+
+                min-height: 500px
+
+            }
+
+.cta h2 {
+
+                letter-spacing: -3px
+
+            }
+}
+</style>
+
+<!-- CTA JS -->
+<script>
+/* No section-specific JavaScript required. */
+</script>
+
+</main>
+
+
+<!-- =========================================================
+     10. FOOTER
+     HTML
+========================================================= -->
+<footer class="footer">
+<div class="logo">KRIGNAL <b>TV</b></div>
+<div>The Discovery Layer of Krignal · The right relationships at the right time.</div>
+<div>© 2026 Krignal</div>
+</footer>
+
+<!-- FOOTER CSS -->
+<style>
+.footer {
+
+            padding: 40px 5vw 60px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #777c73;
+
+            font-size: 12px
+
+        }
+
+@media (max-width:540px) {
+.footer {
+
+                flex-direction: column;
+
+                gap: 12px
+
+            }
+}
+</style>
+
+<!-- FOOTER JS -->
+<script>
+/* No section-specific JavaScript required. */
+</script>
+
+
+<!-- =========================================================
+     11. SEARCH MODAL
+     HTML
+========================================================= -->
+<div class="modal" id="modal">
+<div class="modalBox"><button class="close" onclick="closeSearch()">×</button>
+<div class="eyebrow">Universal discovery</div><input id="modalInput" oninput="filterResults(this.value)" placeholder="Try “healthcare founders Chennai” or “people in AI + education”"/>
+<div class="results" id="results">
+<div class="result"><small>PERSON</small>
+<h3>Meera Iyer</h3>
+<p>Healthcare Leader · Mumbai</p>
+</div>
+<div class="result"><small>EPISODE</small>
+<h3>Building India's next health-tech layer</h3>
+<p>KrigNal Podcast · 38 min</p>
+</div>
+<div class="result"><small>MATCH</small>
+<h3>Doctor × Health-Tech Founder</h3>
+<p>91% signal alignment</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SEARCH MODAL CSS -->
+<style>
+.modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            background: #050605e8;
+
+            z-index: 80;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            backdrop-filter: blur(15px)
+
+        }
+
+.modal.open {
+
+            display: flex
+
+        }
+
+.modalBox {
+
+            width: min(900px, 92vw);
+
+            background: #111311;
+
+            border: 1px solid #2b2e2a;
+
+            border-radius: 28px;
+
+            padding: 34px
+
+        }
+
+.modalBox input {
+
+            width: 100%;
+
+            background: #080908;
+
+            border: 1px solid #31342f;
+
+            color: white;
+
+            border-radius: 16px;
+
+            padding: 18px;
+
+            font-size: 18px;
+
+            outline: 0
+
+        }
+
+.results {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-top: 20px
+
+        }
+
+.result {
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background: #191b18
+
+        }
+
+.result small {
+
+            color: var(--acid)
+
+        }
+
+.close {
+
+            float: right;
+
+            margin-bottom: 15px;
+
+            background: none;
+
+            border: 0;
+
+            color: white;
+
+            font-size: 25px;
+
+            cursor: pointer
+
+        }
+
+@media (max-width:900px) {
+.results {
+
+                grid-template-columns: 1fr
+
+            }
+}
+</style>
+
+<!-- SEARCH MODAL JS -->
+<script>
+const modal = document.getElementById('modal');
+
+function openSearch() {
+    modal.classList.add('open');
+    setTimeout(() => document.getElementById('modalInput').focus(), 100);
+}
+
+function closeSearch() {
+    modal.classList.remove('open');
+}
+
+function filterResults(q) {
+    const r = document.getElementById('results');
+    if (!q) { return; }
+    r.innerHTML = `<div class="result"><small>DISCOVERY</small><h3>${q}</h3><p>Explore people, episodes and companies related to this signal.</p></div><div class="result"><small>PEOPLE</small><h3>People worth knowing</h3><p>Profiles matching “${q}”</p></div><div class="result"><small>MATCHES</small><h3>Potential matches</h3><p>Professional relationships relevant to “${q}”</p></div>`;
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeSearch();
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        openSearch();
+    }
+});
+</script>
+
+
+</body>
+</html>
